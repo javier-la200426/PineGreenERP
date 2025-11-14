@@ -14,17 +14,17 @@ export function useJobs() {
   useEffect(() => {
     async function fetchJobs() {
       try {
-        // TODO: Uncomment when Supabase is configured
-        // const { data, error } = await supabase
-        //   .from('jobs')
-        //   .select('*')
-        //   .order('created_at', { ascending: false })
+        const { data, error } = await supabase
+          .from('jobs')
+          .select(`
+            *,
+            client:clients(name, company),
+            worker:workers(name)
+          `)
+          .order('created_at', { ascending: false })
         
-        // if (error) throw error
-        // setJobs(data || [])
-        
-        // Mock data for now
-        setJobs([])
+        if (error) throw error
+        setJobs(data || [])
       } catch (err) {
         setError(err as Error)
       } finally {
@@ -46,17 +46,13 @@ export function useClients() {
   useEffect(() => {
     async function fetchClients() {
       try {
-        // TODO: Uncomment when Supabase is configured
-        // const { data, error } = await supabase
-        //   .from('clients')
-        //   .select('*')
-        //   .order('created_at', { ascending: false })
+        const { data, error } = await supabase
+          .from('clients')
+          .select('*')
+          .order('created_at', { ascending: false })
         
-        // if (error) throw error
-        // setClients(data || [])
-        
-        // Mock data for now
-        setClients([])
+        if (error) throw error
+        setClients(data || [])
       } catch (err) {
         setError(err as Error)
       } finally {
@@ -78,17 +74,13 @@ export function useWorkers() {
   useEffect(() => {
     async function fetchWorkers() {
       try {
-        // TODO: Uncomment when Supabase is configured
-        // const { data, error } = await supabase
-        //   .from('workers')
-        //   .select('*')
-        //   .order('created_at', { ascending: false })
+        const { data, error } = await supabase
+          .from('workers')
+          .select('*')
+          .order('created_at', { ascending: false })
         
-        // if (error) throw error
-        // setWorkers(data || [])
-        
-        // Mock data for now
-        setWorkers([])
+        if (error) throw error
+        setWorkers(data || [])
       } catch (err) {
         setError(err as Error)
       } finally {

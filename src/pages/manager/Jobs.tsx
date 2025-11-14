@@ -2,9 +2,11 @@ import { useTranslation } from 'react-i18next'
 import Sidebar from '@/components/Sidebar'
 import Header from '@/components/Header'
 import Icon from '@/components/Icon'
+import { useJobs } from '@/hooks/useSupabase'
 
 export default function ManagerJobs() {
   const { t } = useTranslation()
+  const { jobs: jobsData, loading, error } = useJobs()
 
   const sidebarLinks = [
     { to: '/manager/dashboard', icon: 'dashboard', label: t('common.dashboard') },
@@ -19,41 +21,15 @@ export default function ManagerJobs() {
     { to: '/login', icon: 'logout', label: t('common.logout') },
   ]
 
-  // Mock jobs data
-  const jobs = [
-    {
-      id: 1,
-      name: 'Office Renovation #1024',
-      client: 'Innovate Inc.',
-      worker: 'Liam Gallagher',
-      dueDate: '2024-08-15',
-      status: 'in_progress',
-    },
-    {
-      id: 2,
-      name: 'Garden Landscaping',
-      client: 'Sunset Villas',
-      worker: 'Ava Chen',
-      dueDate: '2024-07-22',
-      status: 'completed',
-    },
-    {
-      id: 3,
-      name: 'HVAC Installation',
-      client: 'Tech Park One',
-      worker: 'Mason Rodriguez',
-      dueDate: '2024-09-01',
-      status: 'pending',
-    },
-    {
-      id: 4,
-      name: 'Website Redesign',
-      client: 'Digital Future Co.',
-      worker: 'Sophia Williams',
-      dueDate: '2024-06-30',
-      status: 'overdue',
-    },
-  ]
+  // Transform Supabase data to match component format
+  const jobs = jobsData.map((job: any) => ({
+    id: job.id,
+    name: job.title,
+    client: job.client?.company || job.client?.name || 'N/A',
+    worker: job.worker?.name || 'Unassigned',
+    dueDate: job.scheduled_date ? new Date(job.scheduled_date).toISOString().split('T')[0] : 'N/A',
+    status: job.status,
+  }))
 
   const getStatusBadge = (status: string) => {
     const styles = {
@@ -71,6 +47,37 @@ export default function ManagerJobs() {
     )
   }
 
+  // Show loading state
+  if (loading) {
+    return (
+      <div className="flex h-screen">
+        <Sidebar links={sidebarLinks} bottomLinks={bottomLinks} userRole="manager" />
+        <main className="flex-1 overflow-y-auto flex items-center justify-center">
+          <div className="text-center">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
+            <p className="text-white text-lg">{t('common.loading')}</p>
+          </div>
+        </main>
+      </div>
+    )
+  }
+
+  // Show error state
+  if (error) {
+    return (
+      <div className="flex h-screen">
+        <Sidebar links={sidebarLinks} bottomLinks={bottomLinks} userRole="manager" />
+        <main className="flex-1 overflow-y-auto flex items-center justify-center">
+          <div className="text-center">
+            <Icon name="error" className="text-red-500 text-6xl mb-4" />
+            <p className="text-white text-lg mb-2">Error loading jobs</p>
+            <p className="text-gray-400">{error.message}</p>
+          </div>
+        </main>
+      </div>
+    )
+  }
+
   return (
     <div className="flex h-screen">
       <Sidebar links={sidebarLinks} bottomLinks={bottomLinks} userRole="manager" />
@@ -83,7 +90,7 @@ export default function ManagerJobs() {
                 {t('manager.jobs.title')}
               </h1>
               <p className="text-gray-400 text-base font-normal leading-normal">
-                {t('manager.jobs.subtitle')}
+                {t('manager.jobs.subtitle')} ({jobs.length} jobs)
               </p>
             </div>
             <button className="flex items-center justify-center gap-2 overflow-hidden rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold leading-normal tracking-wide shadow-sm hover:bg-primary/90">
