@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>JobSite - Today's Route</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#137fec",
+              "background-light": "#f6f7f8",
+              "background-dark": "#101922",
+            },
+            fontFamily: {
+              "display": ["Inter", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings:
+            'FILL' 0,
+            'wght' 400,
+            'GRAD' 0,
+            'opsz' 24
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display">
+<div class="relative mx-auto flex min-h-screen w-full max-w-md flex-col overflow-x-hidden">
+<!-- Top Nav Bar -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-gray-200/10 dark:border-white/10 p-4 sticky top-0 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-sm z-10">
+<div class="flex items-center gap-3 text-gray-800 dark:text-white">
+<div class="size-6 text-primary">
+<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M4 42.4379C4 42.4379 14.0962 36.0744 24 41.1692C35.0664 46.8624 44 42.2078 44 42.2078L44 7.01134C44 7.01134 35.068 11.6577 24.0031 5.96913C14.0971 0.876274 4 7.27094 4 7.27094L4 42.4379Z" fill="currentColor"></path>
+</svg>
+</div>
+<h2 class="text-xl font-bold leading-tight tracking-[-0.015em]">JobSite</h2>
+</div>
+<button class="flex items-center justify-center size-10 rounded-full text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-white/10">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</header>
+<main class="flex-grow pb-24">
+<!-- Page Heading -->
+<div class="flex flex-col gap-3 p-4">
+<p class="text-gray-900 dark:text-white text-3xl font-black leading-tight tracking-[-0.033em]">Tuesday, Oct 26</p>
+<p class="text-gray-500 dark:text-gray-400 text-base font-normal leading-normal">Jobs Completed: 3/8</p>
+</div>
+<!-- Progress Bar -->
+<div class="flex flex-col gap-2 px-4 pb-4">
+<div class="rounded-full bg-gray-200 dark:bg-gray-700/50">
+<div class="h-2 rounded-full bg-primary" style="width: 37.5%;"></div>
+</div>
+</div>
+<!-- Map -->
+<div class="px-4 py-2">
+<div class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-xl object-cover" data-alt="Map view showing numbered pins for job locations for the day's route." data-location="Cityscape" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAn8SPbnfLA8CHiWdNzPiAd8H8EVf6NHoSnrrQbHiqxCcOWShiWJ3tszXJ9dVoAb2M76QPpTVWk09d9siTth_XH7BuyRwJ2Z6tvXhgFvlgX32ZvQKIHxuIJ5ORP3fmyn0_5p1vPIIKR_ycnp5rNDU9B60FjvyxI_KqewgIs4hVaV9i2qUkMktJVWanbrF9_EL8EGmwWTtZ0IApqyacovQEjxvhkzzqsH4GWGQ0aJoAM00CBtCTI44qyLzqSsANnErci0MjVeLC6IbWK");'></div>
+</div>
+<!-- Section Header -->
+<h2 class="text-gray-900 dark:text-white text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">Today's Route</h2>
+<!-- Job List -->
+<div class="flex flex-col gap-3 px-4">
+<!-- Job Card 1 -->
+<div class="flex flex-col gap-4 rounded-xl border border-gray-200/50 dark:border-gray-700/50 bg-white dark:bg-gray-800/20 p-4">
+<div class="flex items-center justify-between gap-3">
+<div class="flex items-center gap-3">
+<span class="inline-flex items-center rounded-full bg-yellow-500/20 px-3 py-1 text-xs font-medium text-yellow-600 dark:text-yellow-400">In Progress</span>
+</div>
+<p class="text-sm font-medium text-gray-600 dark:text-gray-400">#4</p>
+</div>
+<div class="flex flex-col gap-1">
+<h3 class="text-lg font-bold text-gray-900 dark:text-white">AC Unit Inspection</h3>
+<p class="text-sm text-gray-600 dark:text-gray-400">1:00 PM - 2:00 PM</p>
+</div>
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-lg text-gray-500 dark:text-gray-400 mt-0.5">person</span>
+<div class="flex flex-col">
+<p class="text-base font-medium text-gray-800 dark:text-gray-200">Eleanor Pena</p>
+<p class="text-sm text-gray-600 dark:text-gray-400">2118 Thornridge Cir. Syracuse, Connecticut</p>
+</div>
+</div>
+<button class="flex w-full items-center justify-center gap-2 rounded-lg bg-primary py-3 text-base font-semibold text-white shadow-sm transition-colors hover:bg-primary/90">
+<span class="material-symbols-outlined">navigation</span>
+                        Start Navigation
+                    </button>
+</div>
+<!-- Job Card 2 -->
+<div class="flex flex-col gap-4 rounded-xl border border-gray-200/50 dark:border-gray-700/50 bg-white dark:bg-gray-800/20 p-4">
+<div class="flex items-center justify-between gap-3">
+<div class="flex items-center gap-3">
+<span class="inline-flex items-center rounded-full bg-blue-500/20 px-3 py-1 text-xs font-medium text-blue-600 dark:text-blue-400">Pending</span>
+</div>
+<p class="text-sm font-medium text-gray-600 dark:text-gray-400">#5</p>
+</div>
+<div class="flex flex-col gap-1">
+<h3 class="text-lg font-bold text-gray-900 dark:text-white">Plumbing Fixture Repair</h3>
+<p class="text-sm text-gray-600 dark:text-gray-400">2:30 PM - 3:30 PM</p>
+</div>
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-lg text-gray-500 dark:text-gray-400 mt-0.5">person</span>
+<div class="flex flex-col">
+<p class="text-base font-medium text-gray-800 dark:text-gray-200">Cody Fisher</p>
+<p class="text-sm text-gray-600 dark:text-gray-400">4517 Washington Ave. Manchester, Kentucky</p>
+</div>
+</div>
+<button class="flex w-full items-center justify-center gap-2 rounded-lg bg-gray-200 dark:bg-gray-700 py-3 text-base font-semibold text-gray-800 dark:text-white shadow-sm transition-colors hover:bg-gray-300 dark:hover:bg-gray-600">
+                        View Details
+                    </button>
+</div>
+<!-- Job Card 3 (Completed) -->
+<div class="flex flex-col gap-4 rounded-xl border border-gray-200/50 dark:border-gray-700/50 bg-white dark:bg-gray-800/20 p-4 opacity-60">
+<div class="flex items-center justify-between gap-3">
+<div class="flex items-center gap-3">
+<span class="inline-flex items-center rounded-full bg-green-500/20 px-3 py-1 text-xs font-medium text-green-600 dark:text-green-400">Completed</span>
+</div>
+<p class="text-sm font-medium text-gray-600 dark:text-gray-400">#3</p>
+</div>
+<div class="flex flex-col gap-1">
+<h3 class="text-lg font-bold text-gray-900 dark:text-white">Furnace Maintenance</h3>
+<p class="text-sm text-gray-600 dark:text-gray-400">11:00 AM - 12:00 PM</p>
+</div>
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-lg text-gray-500 dark:text-gray-400 mt-0.5">person</span>
+<div class="flex flex-col">
+<p class="text-base font-medium text-gray-800 dark:text-gray-200">Jane Cooper</p>
+<p class="text-sm text-gray-600 dark:text-gray-400">2972 Westheimer Rd. Santa Ana, Illinois</p>
+</div>
+</div>
+<button class="flex w-full items-center justify-center gap-2 rounded-lg border border-gray-300 dark:border-gray-600 py-3 text-base font-semibold text-gray-800 dark:text-white shadow-sm transition-colors hover:bg-gray-100 dark:hover:bg-gray-700">
+                        View Report
+                    </button>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 left-0 right-0 z-10 mx-auto max-w-md border-t border-gray-200/50 dark:border-gray-700/50 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-sm">
+<div class="flex h-16 items-center justify-around px-4">
+<a class="flex flex-col items-center gap-1 text-primary" href="#">
+<span class="material-symbols-outlined">calendar_today</span>
+<span class="text-xs font-semibold">Today</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-gray-500 dark:text-gray-400 hover:text-primary dark:hover:text-primary" href="#">
+<span class="material-symbols-outlined">event_note</span>
+<span class="text-xs font-medium">Schedule</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-gray-500 dark:text-gray-400 hover:text-primary dark:hover:text-primary" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="text-xs font-medium">Profile</span>
+</a>
+</div>
+</nav>
+</div>
+</body></html>

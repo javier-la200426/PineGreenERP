@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>JobSite - Secure Payment</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#0A4D68", // User requested primary color
+            "background-light": "#F8F9FA",
+            "background-dark": "#101922",
+            "text-light": "#343A40",
+            "text-dark": "#E5E7EB",
+            "success": "#28A745",
+            "error": "#DC3545",
+            "border-light": "#DEE2E6",
+            "border-dark": "#374151",
+            "subtle-light": "#E9ECEF",
+            "subtle-dark": "#1F2937",
+            "placeholder-light": "#6C757D",
+            "placeholder-dark": "#9CA3AF"
+          },
+          fontFamily: {
+            "display": ["Inter", "sans-serif"]
+          },
+          borderRadius: {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+        },
+      },
+    }
+  </script>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark">
+<div class="relative flex min-h-screen w-full flex-col items-center">
+<div class="flex h-full w-full max-w-4xl grow flex-col px-4 py-8 md:py-12">
+<header class="flex w-full items-center justify-between border-b border-solid border-border-light dark:border-border-dark px-6 py-4">
+<div class="flex items-center gap-4 text-text-light dark:text-text-dark">
+<div class="h-6 w-6 text-primary">
+<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M4 42.4379C4 42.4379 14.0962 36.0744 24 41.1692C35.0664 46.8624 44 42.2078 44 42.2078L44 7.01134C44 7.01134 35.068 11.6577 24.0031 5.96913C14.0971 0.876274 4 7.27094 4 7.27094L4 42.4379Z" fill="currentColor"></path>
+</svg>
+</div>
+<h2 class="text-xl font-bold leading-tight tracking-[-0.015em] text-text-light dark:text-text-dark">JobSite</h2>
+</div>
+</header>
+<main class="flex w-full flex-1 flex-col pt-8">
+<div class="flex flex-wrap items-end justify-between gap-4 p-4">
+<div class="flex min-w-72 flex-col gap-2">
+<p class="text-3xl font-black leading-tight tracking-[-0.033em] text-text-light dark:text-text-dark md:text-4xl">Pay Invoice #JS2024-001</p>
+<p class="text-base font-normal leading-normal text-placeholder-light dark:text-placeholder-dark">Please review the details and enter your payment information below.</p>
+</div>
+</div>
+<div class="mt-6 border-t border-border-light dark:border-border-dark p-4">
+<div class="grid grid-cols-[1fr] gap-x-6 gap-y-5 md:grid-cols-[150px_1fr]">
+<div class="col-span-1 border-t border-t-border-light py-5 md:col-span-2 md:grid md:grid-cols-subgrid dark:border-t-border-dark">
+<p class="text-sm font-medium leading-normal text-placeholder-light dark:text-placeholder-dark">Client Name</p>
+<p class="text-sm font-normal leading-normal text-text-light dark:text-text-dark">John Doe</p>
+</div>
+<div class="col-span-1 border-t border-t-border-light py-5 md:col-span-2 md:grid md:grid-cols-subgrid dark:border-t-border-dark">
+<p class="text-sm font-medium leading-normal text-placeholder-light dark:text-placeholder-dark">Service Rendered</p>
+<p class="text-sm font-normal leading-normal text-text-light dark:text-text-dark">Garden Maintenance - May 2024</p>
+</div>
+<div class="col-span-1 border-t border-t-border-light py-5 md:col-span-2 md:grid md:grid-cols-subgrid dark:border-t-border-dark">
+<p class="text-sm font-medium leading-normal text-placeholder-light dark:text-placeholder-dark">Amount Due</p>
+<p class="text-lg font-bold leading-normal text-text-light dark:text-text-dark">$150.00</p>
+</div>
+</div>
+</div>
+<div class="mt-6 w-full">
+<h2 class="border-t border-border-light dark:border-border-dark px-4 pb-3 pt-8 text-xl font-bold leading-tight tracking-[-0.015em] text-text-light dark:text-text-dark md:text-[22px]">Payment Information</h2>
+<div class="flex flex-col gap-6 px-4 py-3">
+<label class="flex flex-col">
+<p class="pb-2 text-sm font-medium leading-normal text-text-light dark:text-text-dark">Cardholder Name</p>
+<input class="form-input h-12 w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg border border-border-light bg-background-light p-3 text-base font-normal leading-normal text-text-light placeholder:text-placeholder-light focus:border-primary focus:outline-0 focus:ring-2 focus:ring-primary/20 dark:border-border-dark dark:bg-subtle-dark dark:text-text-dark dark:placeholder:text-placeholder-dark dark:focus:border-primary" placeholder="Enter name as it appears on card" value=""/>
+</label>
+<label class="flex flex-col">
+<p class="pb-2 text-sm font-medium leading-normal text-text-light dark:text-text-dark">Card Number</p>
+<div class="relative">
+<input class="form-input h-12 w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg border border-border-light bg-background-light p-3 pl-10 text-base font-normal leading-normal text-text-light placeholder:text-placeholder-light focus:border-primary focus:outline-0 focus:ring-2 focus:ring-primary/20 dark:border-border-dark dark:bg-subtle-dark dark:text-text-dark dark:placeholder:text-placeholder-dark dark:focus:border-primary" placeholder="0000 0000 0000 0000" value=""/>
+<span class="material-symbols-outlined pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-placeholder-light dark:text-placeholder-dark">credit_card</span>
+</div>
+</label>
+<div class="grid grid-cols-1 gap-6 md:grid-cols-2">
+<label class="flex flex-col">
+<p class="pb-2 text-sm font-medium leading-normal text-text-light dark:text-text-dark">Expiration Date</p>
+<input class="form-input h-12 w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg border border-border-light bg-background-light p-3 text-base font-normal leading-normal text-text-light placeholder:text-placeholder-light focus:border-primary focus:outline-0 focus:ring-2 focus:ring-primary/20 dark:border-border-dark dark:bg-subtle-dark dark:text-text-dark dark:placeholder:text-placeholder-dark dark:focus:border-primary" placeholder="MM / YY" value=""/>
+</label>
+<label class="flex flex-col">
+<div class="flex items-center gap-2 pb-2">
+<p class="text-sm font-medium leading-normal text-text-light dark:text-text-dark">CVC / CVV</p>
+<span class="material-symbols-outlined cursor-help text-base text-placeholder-light dark:text-placeholder-dark" title="The 3-4 digit security code on the back of your card.">help</span>
+</div>
+<input class="form-input h-12 w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg border border-border-light bg-background-light p-3 text-base font-normal leading-normal text-text-light placeholder:text-placeholder-light focus:border-primary focus:outline-0 focus:ring-2 focus:ring-primary/20 dark:border-border-dark dark:bg-subtle-dark dark:text-text-dark dark:placeholder:text-placeholder-dark dark:focus:border-primary" placeholder="123" value=""/>
+</label>
+</div>
+</div>
+</div>
+<div class="mt-6 flex flex-col gap-4 px-4">
+<label class="flex items-center gap-3">
+<input class="form-checkbox h-4 w-4 rounded border-border-light bg-background-light text-primary focus:ring-2 focus:ring-primary/50 dark:border-border-dark dark:bg-subtle-dark dark:checked:bg-primary" type="checkbox"/>
+<span class="text-sm text-text-light dark:text-text-dark">Save card for future payments</span>
+</label>
+<label class="flex items-start gap-3">
+<input class="form-checkbox mt-0.5 h-4 w-4 shrink-0 rounded border-border-light bg-background-light text-primary focus:ring-2 focus:ring-primary/50 dark:border-border-dark dark:bg-subtle-dark dark:checked:bg-primary" required="" type="checkbox"/>
+<span class="text-sm text-text-light dark:text-text-dark">I agree to the <a class="font-medium text-primary underline" href="#">Terms of Service</a></span>
+</label>
+</div>
+<div class="mt-8 flex flex-col items-center gap-4 px-4 py-3">
+<button class="flex h-14 w-full items-center justify-center gap-3 rounded-lg bg-primary px-6 py-3 text-lg font-bold text-white transition-colors hover:bg-primary/90 disabled:cursor-not-allowed disabled:opacity-50">
+<span class="material-symbols-outlined">lock</span>
+<span>Pay $150.00 Securely</span>
+</button>
+<p class="text-xs text-placeholder-light dark:text-placeholder-dark">Your payment information is encrypted and secure.</p>
+<div class="flex items-center gap-2 pt-2 text-sm text-placeholder-light dark:text-placeholder-dark">
+<span>Powered by</span>
+<span class="font-bold">Stripe</span>
+</div>
+</div>
+<footer class="mt-12 w-full border-t border-border-light pt-6 text-center text-sm text-placeholder-light dark:border-border-dark dark:text-placeholder-dark">
+<div class="flex items-center justify-center gap-4">
+<a class="hover:text-primary hover:underline" href="#">Privacy Policy</a>
+<span>•</span>
+<a class="hover:text-primary hover:underline" href="#">Support</a>
+<span>•</span>
+<a class="hover:text-primary hover:underline" href="#">Contact Us</a>
+</div>
+<p class="mt-4">© 2024 JobSite. All rights reserved.</p>
+</footer>
+</main>
+</div>
+</div>
+</body></html>

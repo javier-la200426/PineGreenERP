@@ -1,0 +1,195 @@
+{
+  "common": {
+    "jobsite": "JobSite",
+    "dashboard": "Panel de Control",
+    "jobs": "Trabajos",
+    "workers": "Trabajadores",
+    "clients": "Clientes",
+    "reports": "Informes",
+    "settings": "Configuración",
+    "logout": "Cerrar Sesión",
+    "login": "Iniciar Sesión",
+    "search": "Buscar",
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "edit": "Editar",
+    "delete": "Eliminar",
+    "view": "Ver",
+    "add": "Agregar",
+    "create": "Crear",
+    "update": "Actualizar",
+    "submit": "Enviar",
+    "loading": "Cargando...",
+    "notifications": "Notificaciones"
+  },
+  "manager": {
+    "dashboard": {
+      "title": "Panel del Gerente",
+      "subtitle": "Resumen de operaciones diarias, programación y monitoreo del sistema.",
+      "totalRevenue": "Ingresos Totales",
+      "pendingInvoices": "Facturas Pendientes",
+      "jobsCompletedToday": "Trabajos Completados Hoy",
+      "scheduleNewJob": "Programar Nuevo Trabajo",
+      "liveRouteMonitor": "Monitor de Ruta en Vivo",
+      "workerStatus": "Estado y Disponibilidad de Trabajadores",
+      "systemStatus": "Estado del Sistema",
+      "available": "Disponible",
+      "onRoute": "En Ruta",
+      "busy": "Ocupado",
+      "language": "Idioma",
+      "timezone": "Zona Horaria",
+      "apiHealth": "Estado de API",
+      "databaseStatus": "Estado de Base de Datos",
+      "normal": "Normal",
+      "connected": "Conectado"
+    },
+    "jobs": {
+      "title": "Todos los Trabajos",
+      "subtitle": "Supervise todos los trabajos y gestione su estado.",
+      "createNewJob": "Crear Nuevo Trabajo",
+      "searchPlaceholder": "Buscar por nombre de trabajo, cliente o trabajador...",
+      "statusAll": "Estado: Todos",
+      "worker": "Trabajador",
+      "dueDate": "Fecha de Vencimiento",
+      "reset": "Restablecer",
+      "status": "Estado",
+      "actions": "Acciones",
+      "job": "Trabajo",
+      "client": "Cliente",
+      "inProgress": "En Progreso",
+      "completed": "Completado",
+      "pending": "Pendiente",
+      "overdue": "Atrasado"
+    },
+    "workers": {
+      "title": "Trabajadores",
+      "subtitle": "Gestione su fuerza laboral.",
+      "addWorker": "Agregar Trabajador"
+    },
+    "clients": {
+      "title": "Clientes",
+      "subtitle": "Ver y gestionar clientes.",
+      "newClient": "Nuevo Cliente",
+      "searchPlaceholder": "Buscar por nombre o empresa...",
+      "active": "Activo",
+      "inactive": "Inactivo",
+      "clientSince": "Cliente desde",
+      "jobHistory": "Historial de Trabajos",
+      "billing": "Facturación",
+      "details": "Detalles"
+    },
+    "reports": {
+      "title": "Panel de Informes",
+      "subtitle": "Ver informes de finalización de trabajos, ingresos y rendimiento de trabajadores.",
+      "jobCompletion": "Finalización de Trabajos",
+      "revenueAnalysis": "Análisis de Ingresos",
+      "workerPerformance": "Rendimiento de Trabajadores",
+      "totalRevenue": "Ingresos Totales",
+      "jobsCompleted": "Trabajos Completados",
+      "topPerformingWorker": "Mejor Trabajador",
+      "averageJobValue": "Valor Promedio del Trabajo",
+      "completedJobs": "Trabajos Completados",
+      "exportToCsv": "Exportar a CSV",
+      "jobId": "ID de Trabajo",
+      "clientName": "Nombre del Cliente",
+      "assignedWorker": "Trabajador Asignado",
+      "dateCompleted": "Fecha de Finalización",
+      "proofOfCompletion": "Prueba de Finalización"
+    }
+  },
+  "client": {
+    "appointment": {
+      "title": "Detalles de su Cita",
+      "subtitle": "Aquí está toda la información para su próximo servicio.",
+      "confirmed": "Confirmado",
+      "jobId": "ID de Trabajo",
+      "dateTime": "Fecha y Hora",
+      "serviceAddress": "Dirección de Servicio",
+      "assignedWorker": "Trabajador Asignado",
+      "referenceNumber": "Número de Referencia",
+      "reschedule": "Reprogramar Cita",
+      "cancelAppointment": "Cancelar Cita",
+      "myAccount": "Mi Cuenta"
+    },
+    "payment": {
+      "title": "Pagar Factura",
+      "subtitle": "Por favor revise los detalles e ingrese su información de pago a continuación.",
+      "clientName": "Nombre del Cliente",
+      "serviceRendered": "Servicio Prestado",
+      "amountDue": "Monto Adeudado",
+      "paymentInformation": "Información de Pago",
+      "cardholderName": "Nombre del Titular",
+      "cardNumber": "Número de Tarjeta",
+      "expirationDate": "Fecha de Vencimiento",
+      "cvc": "CVC / CVV",
+      "saveCard": "Guardar tarjeta para pagos futuros",
+      "agreeToTerms": "Acepto los Términos de Servicio",
+      "paySecurely": "Pagar de Forma Segura",
+      "encryptionNotice": "Su información de pago está encriptada y segura.",
+      "poweredBy": "Desarrollado por"
+    },
+    "receipt": {
+      "title": "Recibo de Pago",
+      "subtitle": "¡Gracias por su pago!",
+      "downloadReceipt": "Descargar Recibo",
+      "printReceipt": "Imprimir Recibo"
+    }
+  },
+  "worker": {
+    "jobList": {
+      "title": "Ruta de Hoy",
+      "jobsCompleted": "Trabajos Completados",
+      "startNavigation": "Iniciar Navegación",
+      "viewDetails": "Ver Detalles",
+      "viewReport": "Ver Informe"
+    },
+    "route": {
+      "title": "Vista de Ruta",
+      "optimizeRoute": "Optimizar Ruta",
+      "routeOptimization": "La función de optimización de rutas estará disponible pronto..."
+    },
+    "jobCompletion": {
+      "title": "Detalles del Trabajo",
+      "appointment": "CITA",
+      "task": "TAREA",
+      "startJob": "Iniciar Trabajo (En Progreso)",
+      "markComplete": "Marcar como Completado",
+      "addJobNotes": "Agregar Notas del Trabajo",
+      "notesPlaceholder": "Ingrese notas sobre el trabajo...",
+      "proofOfCompletion": "Fotos de Prueba de Finalización",
+      "addPhotos": "Agregar Fotos",
+      "uploading": "Subiendo",
+      "submitFinish": "Enviar y Finalizar Trabajo"
+    }
+  },
+  "settings": {
+    "title": "Configuración",
+    "subtitle": "Gestione sus preferencias y configuración de cuenta.",
+    "language": "Idioma",
+    "selectLanguage": "Seleccionar Idioma",
+    "english": "Inglés",
+    "spanish": "Español",
+    "theme": "Tema",
+    "lightMode": "Modo Claro",
+    "darkMode": "Modo Oscuro",
+    "notifications": "Notificaciones",
+    "emailNotifications": "Notificaciones por Correo",
+    "pushNotifications": "Notificaciones Push",
+    "account": "Cuenta",
+    "profile": "Perfil",
+    "changePassword": "Cambiar Contraseña",
+    "logout": "Cerrar Sesión"
+  },
+  "login": {
+    "title": "Bienvenido de Nuevo",
+    "subtitle": "Inicie sesión en su cuenta",
+    "email": "Correo Electrónico",
+    "password": "Contraseña",
+    "rememberMe": "Recuérdame",
+    "forgotPassword": "¿Olvidó su contraseña?",
+    "signIn": "Iniciar Sesión",
+    "dontHaveAccount": "¿No tiene una cuenta?",
+    "signUp": "Registrarse"
+  }
+}
+

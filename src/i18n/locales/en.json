@@ -1,0 +1,195 @@
+{
+  "common": {
+    "jobsite": "JobSite",
+    "dashboard": "Dashboard",
+    "jobs": "Jobs",
+    "workers": "Workers",
+    "clients": "Clients",
+    "reports": "Reports",
+    "settings": "Settings",
+    "logout": "Logout",
+    "login": "Login",
+    "search": "Search",
+    "save": "Save",
+    "cancel": "Cancel",
+    "edit": "Edit",
+    "delete": "Delete",
+    "view": "View",
+    "add": "Add",
+    "create": "Create",
+    "update": "Update",
+    "submit": "Submit",
+    "loading": "Loading...",
+    "notifications": "Notifications"
+  },
+  "manager": {
+    "dashboard": {
+      "title": "Manager Dashboard",
+      "subtitle": "Overview of daily operations, scheduling, and system monitoring.",
+      "totalRevenue": "Total Revenue",
+      "pendingInvoices": "Pending Invoices",
+      "jobsCompletedToday": "Jobs Completed Today",
+      "scheduleNewJob": "Schedule New Job",
+      "liveRouteMonitor": "Live Route Monitor",
+      "workerStatus": "Worker Status & Availability",
+      "systemStatus": "System Status",
+      "available": "Available",
+      "onRoute": "On Route",
+      "busy": "Busy",
+      "language": "Language",
+      "timezone": "Timezone",
+      "apiHealth": "API Health",
+      "databaseStatus": "Database Status",
+      "normal": "Normal",
+      "connected": "Connected"
+    },
+    "jobs": {
+      "title": "All Jobs",
+      "subtitle": "Oversee all jobs and manage their status.",
+      "createNewJob": "Create New Job",
+      "searchPlaceholder": "Search by job name, client, or worker...",
+      "statusAll": "Status: All",
+      "worker": "Worker",
+      "dueDate": "Due Date",
+      "reset": "Reset",
+      "status": "Status",
+      "actions": "Actions",
+      "job": "Job",
+      "client": "Client",
+      "inProgress": "In Progress",
+      "completed": "Completed",
+      "pending": "Pending",
+      "overdue": "Overdue"
+    },
+    "workers": {
+      "title": "Workers",
+      "subtitle": "Manage your workforce.",
+      "addWorker": "Add Worker"
+    },
+    "clients": {
+      "title": "Clients",
+      "subtitle": "View and manage clients.",
+      "newClient": "New Client",
+      "searchPlaceholder": "Search by name or company...",
+      "active": "Active",
+      "inactive": "Inactive",
+      "clientSince": "Client since",
+      "jobHistory": "Job History",
+      "billing": "Billing",
+      "details": "Details"
+    },
+    "reports": {
+      "title": "Reports Dashboard",
+      "subtitle": "View reports for job completion, revenue, and worker performance.",
+      "jobCompletion": "Job Completion",
+      "revenueAnalysis": "Revenue Analysis",
+      "workerPerformance": "Worker Performance",
+      "totalRevenue": "Total Revenue",
+      "jobsCompleted": "Jobs Completed",
+      "topPerformingWorker": "Top Performing Worker",
+      "averageJobValue": "Average Job Value",
+      "completedJobs": "Completed Jobs",
+      "exportToCsv": "Export to CSV",
+      "jobId": "Job ID",
+      "clientName": "Client Name",
+      "assignedWorker": "Assigned Worker",
+      "dateCompleted": "Date Completed",
+      "proofOfCompletion": "Proof of Completion"
+    }
+  },
+  "client": {
+    "appointment": {
+      "title": "Your Appointment Details",
+      "subtitle": "Here's all the information for your upcoming service.",
+      "confirmed": "Confirmed",
+      "jobId": "Job ID",
+      "dateTime": "Date & Time",
+      "serviceAddress": "Service Address",
+      "assignedWorker": "Assigned Worker",
+      "referenceNumber": "Reference Number",
+      "reschedule": "Reschedule Appointment",
+      "cancelAppointment": "Cancel Appointment",
+      "myAccount": "My Account"
+    },
+    "payment": {
+      "title": "Pay Invoice",
+      "subtitle": "Please review the details and enter your payment information below.",
+      "clientName": "Client Name",
+      "serviceRendered": "Service Rendered",
+      "amountDue": "Amount Due",
+      "paymentInformation": "Payment Information",
+      "cardholderName": "Cardholder Name",
+      "cardNumber": "Card Number",
+      "expirationDate": "Expiration Date",
+      "cvc": "CVC / CVV",
+      "saveCard": "Save card for future payments",
+      "agreeToTerms": "I agree to the Terms of Service",
+      "paySecurely": "Pay Securely",
+      "encryptionNotice": "Your payment information is encrypted and secure.",
+      "poweredBy": "Powered by"
+    },
+    "receipt": {
+      "title": "Payment Receipt",
+      "subtitle": "Thank you for your payment!",
+      "downloadReceipt": "Download Receipt",
+      "printReceipt": "Print Receipt"
+    }
+  },
+  "worker": {
+    "jobList": {
+      "title": "Today's Route",
+      "jobsCompleted": "Jobs Completed",
+      "startNavigation": "Start Navigation",
+      "viewDetails": "View Details",
+      "viewReport": "View Report"
+    },
+    "route": {
+      "title": "Route View",
+      "optimizeRoute": "Optimize Route",
+      "routeOptimization": "Route optimization feature coming soon..."
+    },
+    "jobCompletion": {
+      "title": "Job Details",
+      "appointment": "APPOINTMENT",
+      "task": "TASK",
+      "startJob": "Start Job (In Progress)",
+      "markComplete": "Mark as Complete",
+      "addJobNotes": "Add Job Notes",
+      "notesPlaceholder": "Enter notes about the job...",
+      "proofOfCompletion": "Proof of Completion Photos",
+      "addPhotos": "Add Photos",
+      "uploading": "Uploading",
+      "submitFinish": "Submit & Finish Job"
+    }
+  },
+  "settings": {
+    "title": "Settings",
+    "subtitle": "Manage your preferences and account settings.",
+    "language": "Language",
+    "selectLanguage": "Select Language",
+    "english": "English",
+    "spanish": "Spanish",
+    "theme": "Theme",
+    "lightMode": "Light Mode",
+    "darkMode": "Dark Mode",
+    "notifications": "Notifications",
+    "emailNotifications": "Email Notifications",
+    "pushNotifications": "Push Notifications",
+    "account": "Account",
+    "profile": "Profile",
+    "changePassword": "Change Password",
+    "logout": "Logout"
+  },
+  "login": {
+    "title": "Welcome Back",
+    "subtitle": "Sign in to your account",
+    "email": "Email",
+    "password": "Password",
+    "rememberMe": "Remember me",
+    "forgotPassword": "Forgot password?",
+    "signIn": "Sign In",
+    "dontHaveAccount": "Don't have an account?",
+    "signUp": "Sign Up"
+  }
+}
+

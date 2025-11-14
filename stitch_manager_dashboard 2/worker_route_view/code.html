@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>JobSite - Today's Route</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#007BFF",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                        "status-pending": "#FFC107",
+                        "status-inprogress": "#007BFF",
+                        "status-completed": "#28A745",
+                        "status-cancelled": "#DC3545",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings:
+                'FILL' 0,
+                'wght' 400,
+                'GRAD' 0,
+                'opsz' 24
+        }
+    </style>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark">
+<div class="relative flex h-screen w-full flex-col overflow-hidden">
+<header class="flex h-16 shrink-0 items-center justify-between border-b border-gray-200/10 bg-background-light px-6 dark:bg-background-dark dark:border-gray-800">
+<div class="flex items-center gap-4 text-gray-800 dark:text-white">
+<span class="material-symbols-outlined text-primary text-3xl">route</span>
+<h1 class="text-xl font-bold tracking-tight">JobSite</h1>
+</div>
+<div class="hidden text-center md:block">
+<p class="font-medium text-gray-900 dark:text-gray-100">Today's Route</p>
+<p class="text-sm text-gray-500 dark:text-gray-400">October 26, 2023</p>
+</div>
+<div class="flex items-center gap-4">
+<button class="flex h-10 w-10 cursor-pointer items-center justify-center overflow-hidden rounded-full border border-gray-200/10 bg-white/5">
+<span class="material-symbols-outlined text-gray-600 dark:text-gray-300">notifications</span>
+</button>
+<div class="flex items-center gap-3">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" data-alt="User avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAkv8CkQckW4LEdVDmtqMy5hgABhexh9NtiPYprnHsyTtUiAFJTTTpsYx1YULtAOnBEFRWoZsh7V4W2UXULN4VwANDjQA2xQDNOqPZRFyky7a2rsO3HAUVFPww2wm1b0VyOorwbTQsLEBbX4ihQ_qibJbjf7G3e8eY5zo7YwrtA1xHy6zN6zcjPrln1L2PW2XKEaKZpON2yZgiEhhYsWeHORHH5kVADQ2mvtlvZoGzsB-Vu8W6IizcDX7Ufq-GY0-fyTfuTDYuEczVo");'></div>
+<div class="hidden lg:flex flex-col text-right">
+<p class="text-sm font-semibold text-gray-900 dark:text-gray-100">David Smith</p>
+<p class="text-xs text-gray-500 dark:text-gray-400">Field Technician</p>
+</div>
+</div>
+</div>
+</header>
+<main class="flex flex-1 overflow-hidden">
+<!-- Side Panel -->
+<aside class="flex w-full max-w-sm shrink-0 flex-col border-r border-gray-200/10 bg-background-light dark:bg-background-dark">
+<div class="flex items-center justify-between border-b border-gray-200/10 p-4">
+<h2 class="text-lg font-semibold text-gray-900 dark:text-gray-100">Today's Jobs (4)</h2>
+<button class="flex items-center justify-center rounded-lg p-2 hover:bg-gray-100 dark:hover:bg-white/5">
+<span class="material-symbols-outlined text-gray-600 dark:text-gray-400">menu_open</span>
+</button>
+</div>
+<div class="flex-1 overflow-y-auto">
+<ul class="divide-y divide-gray-200/10">
+<!-- Completed Job -->
+<li class="flex items-start gap-4 p-4 opacity-60">
+<div class="flex flex-col items-center">
+<div class="flex size-10 items-center justify-center rounded-full bg-status-completed/20 text-status-completed">
+<span class="material-symbols-outlined">check_circle</span>
+</div>
+</div>
+<div class="flex-1">
+<p class="font-semibold text-gray-900 dark:text-white">Job #1: Oakwood Apartments</p>
+<p class="text-sm text-gray-500 dark:text-gray-400">123 Main St, Anytown, USA</p>
+<p class="mt-1 text-sm font-medium text-status-completed">Status: Completed</p>
+</div>
+</li>
+<!-- Active/In Progress Job -->
+<li class="flex flex-col gap-4 bg-primary/10 p-4 dark:bg-primary/20">
+<div class="flex items-start gap-4">
+<div class="flex flex-col items-center">
+<div class="flex size-10 items-center justify-center rounded-full bg-status-inprogress text-white">
+<span class="material-symbols-outlined">directions_walk</span>
+</div>
+</div>
+<div class="flex-1">
+<p class="font-semibold text-gray-900 dark:text-white">Job #2: Main Street Cafe</p>
+<p class="text-sm text-gray-500 dark:text-gray-400">456 Central Ave, Anytown, USA</p>
+<p class="mt-1 text-sm text-gray-600 dark:text-gray-300">ETA: 9:15 AM (15 min away)</p>
+<p class="mt-1 text-sm font-medium text-status-inprogress">Status: In Progress</p>
+</div>
+</div>
+<div class="flex items-center gap-2 pl-14">
+<button class="flex h-9 flex-1 items-center justify-center gap-2 rounded-lg bg-primary px-4 text-sm font-semibold text-white">
+<span class="material-symbols-outlined text-base">near_me</span>
+                                    Navigate
+                                </button>
+<button class="flex h-9 flex-1 items-center justify-center rounded-lg bg-green-600 px-4 text-sm font-semibold text-white">
+                                    Complete Job
+                                </button>
+</div>
+</li>
+<!-- Pending Job -->
+<li class="flex items-start gap-4 p-4">
+<div class="flex flex-col items-center">
+<div class="flex size-10 items-center justify-center rounded-full bg-status-pending/20 text-status-pending">
+<span class="material-symbols-outlined">pending</span>
+</div>
+</div>
+<div class="flex-1">
+<p class="font-semibold text-gray-900 dark:text-white">Job #3: Downtown Library</p>
+<p class="text-sm text-gray-500 dark:text-gray-400">789 Library Ln, Anytown, USA</p>
+<p class="mt-1 text-sm font-medium text-status-pending">Status: Pending</p>
+</div>
+<button class="flex h-9 items-center justify-center gap-2 rounded-lg bg-gray-200 px-4 text-sm font-semibold text-gray-700 dark:bg-white/10 dark:text-gray-200">
+                                Navigate
+                            </button>
+</li>
+<!-- Cancelled Job -->
+<li class="flex items-start gap-4 p-4">
+<div class="flex flex-col items-center">
+<div class="flex size-10 items-center justify-center rounded-full bg-status-cancelled/20 text-status-cancelled">
+<span class="material-symbols-outlined">cancel</span>
+</div>
+</div>
+<div class="flex-1">
+<p class="font-semibold text-gray-900 dark:text-white">Job #4: City Hall</p>
+<p class="text-sm text-gray-500 dark:text-gray-400">101 Gov Plaza, Anytown, USA</p>
+<p class="mt-1 text-sm font-medium text-status-cancelled">Status: Cancelled</p>
+</div>
+</li>
+</ul>
+</div>
+</aside>
+<!-- Map View -->
+<div class="flex flex-1 flex-col">
+<div class="bg-cover bg-center flex min-h-[320px] flex-1 flex-col justify-between p-6" data-alt="A map showing a route with several job pins." data-location="Anytown, USA" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAnstWHYB7StTmCdxGBWM6v3cBWXYeKvJbYkPQRFus6r9NrLpr7F6eKS7WIsGavnkj4DFh7HsYvnylNCGwMXW9dq3Z3N7CHp2rlyI4B4z-MKY_poXAkZTc3cJYtfr2jpy2wnYPheIKHvF_0b0W9zAw3weUEOF2FAKrk45qYplZMSBG8c4jlWW6GOuP9T9HAKy7FQRyjGElyPued2J6qu8Wm68z5InXBe9mjOBFluQDb_U1IVb9pBRck0hEjN_0RgDqTTGGNPpS4JnHd");'>
+<label class="flex w-full max-w-sm flex-col">
+<div class="flex w-full flex-1 items-stretch rounded-lg h-12 shadow-lg">
+<div class="text-gray-400 flex border-none bg-background-light dark:bg-gray-800 items-center justify-center pl-4 rounded-l-lg border-r-0">
+<span class="material-symbols-outlined">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-r-lg text-gray-800 dark:text-white focus:outline-0 focus:ring-0 border-none bg-background-light dark:bg-gray-800 h-full placeholder:text-gray-500 dark:placeholder:text-gray-400 px-4 pl-2 text-base font-normal leading-normal" placeholder="Search for job or address" value=""/>
+</div>
+</label>
+<div class="flex flex-col items-end gap-3">
+<div class="flex flex-col gap-px overflow-hidden rounded-lg shadow-lg">
+<button class="flex size-10 items-center justify-center bg-background-light dark:bg-gray-800 text-gray-800 dark:text-white">
+<span class="material-symbols-outlined">add</span>
+</button>
+<button class="flex size-10 items-center justify-center bg-background-light dark:bg-gray-800 text-gray-800 dark:text-white">
+<span class="material-symbols-outlined">remove</span>
+</button>
+</div>
+<button class="flex size-10 items-center justify-center rounded-lg bg-background-light dark:bg-gray-800 text-gray-800 dark:text-white shadow-lg">
+<span class="material-symbols-outlined">my_location</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

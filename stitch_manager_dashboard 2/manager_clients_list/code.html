@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>JobSite - Client Management</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#137fec",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                        "success": "#10B981",
+                        "warning": "#F59E0B"
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings:
+            'FILL' 0,
+            'wght' 400,
+            'GRAD' 0,
+            'opsz' 24
+        }
+        .material-symbols-outlined.fill {
+             font-variation-settings:
+            'FILL' 1,
+            'wght' 400,
+            'GRAD' 0,
+            'opsz' 24
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display">
+<div class="relative flex min-h-screen w-full">
+<!-- SideNavBar -->
+<aside class="flex h-screen w-64 flex-col bg-white dark:bg-[#111a22] border-r border-gray-200 dark:border-gray-800">
+<div class="flex flex-col justify-between p-4 flex-grow">
+<div class="flex flex-col gap-4">
+<div class="flex items-center gap-3">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" data-alt="JobSite company logo" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDGMorzCdXc2jsv--xptFNOcrNH25hsDdwWxnMYEzvSpaGPImS9I6uTAhNphnxvD0Cu_C9ZUK2Gb0mXHTADnxQle4zePuSMkta0-_fWPUkEejqnRs2RfJaUDmeauOZjlMW-zU7muQHGS5o80sb_jhe4WKgH8akjmEmMhMICQ9GqKLjQ6e1NQuOm1oTcbEXcrirC6iO6Cne9A-fvDHv61zS6ks5MdIXW8EoIiVg8H3sXrL56uQQNJ3x67x29SxcOVs6Mi8OxRYAfG8u3");'></div>
+<div class="flex flex-col">
+<h1 class="text-gray-900 dark:text-white text-base font-medium leading-normal">JobSite</h1>
+<p class="text-gray-500 dark:text-[#92adc9] text-sm font-normal leading-normal">Management Portal</p>
+</div>
+</div>
+<div class="flex flex-col gap-1 mt-4">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-primary/20 hover:text-primary dark:hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<p class="text-sm font-medium leading-normal">Dashboard</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-primary/20 hover:text-primary dark:hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined">work</span>
+<p class="text-sm font-medium leading-normal">Jobs</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-primary/20 hover:text-primary dark:hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined">group</span>
+<p class="text-sm font-medium leading-normal">Workers</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg bg-primary/20 text-primary dark:text-white dark:bg-primary/30" href="#">
+<span class="material-symbols-outlined fill">person_search</span>
+<p class="text-sm font-medium leading-normal">Clients</p>
+</a>
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-primary/20 hover:text-primary dark:hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined">settings</span>
+<p class="text-sm font-medium leading-normal">Settings</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-primary/20 hover:text-primary dark:hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined">help</span>
+<p class="text-sm font-medium leading-normal">Help</p>
+</a>
+</div>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 overflow-y-auto">
+<div class="grid grid-cols-12 gap-6 p-6">
+<!-- Left Column: Client List -->
+<div class="col-span-12 lg:col-span-5 xl:col-span-4">
+<div class="flex flex-col gap-4">
+<!-- PageHeading -->
+<div class="flex flex-wrap justify-between gap-3">
+<div class="flex flex-col gap-1">
+<p class="text-gray-900 dark:text-white text-3xl font-black leading-tight tracking-[-0.033em]">Clients</p>
+<p class="text-gray-500 dark:text-[#92adc9] text-base font-normal leading-normal">View and manage clients.</p>
+</div>
+<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold leading-normal tracking-[0.015em] gap-2">
+<span class="material-symbols-outlined">add</span>
+<span class="truncate">New Client</span>
+</button>
+</div>
+<!-- SearchBar -->
+<div class="py-1">
+<label class="flex flex-col min-w-40 h-12 w-full">
+<div class="flex w-full flex-1 items-stretch rounded-lg h-full">
+<div class="text-gray-400 dark:text-[#92adc9] flex bg-gray-100 dark:bg-[#233648] items-center justify-center pl-4 rounded-l-lg border-r-0">
+<span class="material-symbols-outlined">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-gray-900 dark:text-white focus:outline-0 focus:ring-2 focus:ring-primary/50 border-none bg-gray-100 dark:bg-[#233648] h-full placeholder:text-gray-400 dark:placeholder:text-[#92adc9] px-4 rounded-l-none border-l-0 pl-2 text-base font-normal leading-normal" placeholder="Search by name or company..." value=""/>
+</div>
+</label>
+</div>
+<!-- Client List Table -->
+<div class="overflow-hidden rounded-xl border border-gray-200 dark:border-[#324d67] bg-white dark:bg-[#111a22]">
+<table class="w-full">
+<thead class="bg-gray-50 dark:bg-[#192633]">
+<tr>
+<th class="px-4 py-3 text-left w-12"><input class="h-4 w-4 rounded border-gray-300 dark:border-[#324d67] bg-transparent text-primary focus:ring-primary/50" type="checkbox"/></th>
+<th class="px-4 py-3 text-left text-gray-600 dark:text-white text-sm font-medium leading-normal">Client</th>
+<th class="px-4 py-3 text-left text-gray-600 dark:text-white text-sm font-medium leading-normal">Status</th>
+</tr>
+</thead>
+<tbody>
+<tr class="border-t border-t-gray-200 dark:border-t-[#324d67] bg-primary/10 dark:bg-primary/20 cursor-pointer">
+<td class="h-[72px] px-4 py-2 text-center"><input class="h-4 w-4 rounded border-gray-300 dark:border-[#324d67] bg-transparent text-primary focus:ring-primary/50" type="checkbox"/></td>
+<td class="h-[72px] px-4 py-2">
+<div class="text-gray-900 dark:text-white text-sm font-medium leading-normal">Eleanor Vance</div>
+<div class="text-gray-500 dark:text-[#92adc9] text-sm font-normal">Innovate Inc.</div>
+</td>
+<td class="h-[72px] px-4 py-2">
+<span class="inline-flex items-center rounded-md bg-success/10 px-2 py-1 text-xs font-medium text-success ring-1 ring-inset ring-success/20">Active</span>
+</td>
+</tr>
+<tr class="border-t border-t-gray-200 dark:border-t-[#324d67] hover:bg-gray-50 dark:hover:bg-white/5 cursor-pointer">
+<td class="h-[72px] px-4 py-2 text-center"><input class="h-4 w-4 rounded border-gray-300 dark:border-[#324d67] bg-transparent text-primary focus:ring-primary/50" type="checkbox"/></td>
+<td class="h-[72px] px-4 py-2">
+<div class="text-gray-900 dark:text-white text-sm font-medium leading-normal">Marcus Holloway</div>
+<div class="text-gray-500 dark:text-[#92adc9] text-sm font-normal">Tech Solutions</div>
+</td>
+<td class="h-[72px] px-4 py-2">
+<span class="inline-flex items-center rounded-md bg-success/10 px-2 py-1 text-xs font-medium text-success ring-1 ring-inset ring-success/20">Active</span>
+</td>
+</tr>
+<tr class="border-t border-t-gray-200 dark:border-t-[#324d67] hover:bg-gray-50 dark:hover:bg-white/5 cursor-pointer">
+<td class="h-[72px] px-4 py-2 text-center"><input class="h-4 w-4 rounded border-gray-300 dark:border-[#324d67] bg-transparent text-primary focus:ring-primary/50" type="checkbox"/></td>
+<td class="h-[72px] px-4 py-2">
+<div class="text-gray-900 dark:text-white text-sm font-medium leading-normal">Beatrice Chen</div>
+<div class="text-gray-500 dark:text-[#92adc9] text-sm font-normal">Creative Minds</div>
+</td>
+<td class="h-[72px] px-4 py-2">
+<span class="inline-flex items-center rounded-md bg-gray-400/10 px-2 py-1 text-xs font-medium text-gray-500 dark:text-gray-400 ring-1 ring-inset ring-gray-400/20">Inactive</span>
+</td>
+</tr>
+<tr class="border-t border-t-gray-200 dark:border-t-[#324d67] hover:bg-gray-50 dark:hover:bg-white/5 cursor-pointer">
+<td class="h-[72px] px-4 py-2 text-center"><input class="h-4 w-4 rounded border-gray-300 dark:border-[#324d67] bg-transparent text-primary focus:ring-primary/50" type="checkbox"/></td>
+<td class="h-[72px] px-4 py-2">
+<div class="text-gray-900 dark:text-white text-sm font-medium leading-normal">Samuel Croft</div>
+<div class="text-gray-500 dark:text-[#92adc9] text-sm font-normal">Apex Construction</div>
+</td>
+<td class="h-[72px] px-4 py-2">
+<span class="inline-flex items-center rounded-md bg-success/10 px-2 py-1 text-xs font-medium text-success ring-1 ring-inset ring-success/20">Active</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<!-- Right Column: Client Detail -->
+<div class="col-span-12 lg:col-span-7 xl:col-span-8">
+<div class="sticky top-6 flex flex-col gap-6">
+<!-- ProfileHeader -->
+<div class="p-6 bg-white dark:bg-[#111a22] rounded-xl border border-gray-200 dark:border-[#324d67]">
+<div class="flex w-full flex-col gap-4 sm:flex-row sm:justify-between sm:items-center">
+<div class="flex gap-4">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full h-24 w-24 flex-shrink-0" data-alt="Profile picture of Eleanor Vance" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuALbG_-2cxyBrhdcoTjhmKF4gC85EE2E0voD9hpEaf-QrR1GtBfu2yAC6XloBtRZIeGggKh9ExsFJRAVczw1nyeTWAyfinjMsjYne7tPmwopzlkjcxZ4SANIAK9r23ttpYsAEBghb4eJF_9jLpSSl5bmrakrNAuWWrsV8OzF6PuLM_-yhtKx9Qq4CW8EutUm67_gshyEgZ35kD-GzJOZaU3LaPI2qHrvjaRRclGwhqBG8UnfT5KQd5mXDGgDxMiI7tbBP0q0jUdVeEa");'></div>
+<div class="flex flex-col justify-center">
+<p class="text-gray-900 dark:text-white text-[22px] font-bold leading-tight tracking-[-0.015em]">Eleanor Vance</p>
+<p class="text-gray-500 dark:text-[#92adc9] text-base font-normal leading-normal">Innovate Inc.</p>
+<p class="text-gray-500 dark:text-[#92adc9] text-base font-normal leading-normal">Client since Jan 15, 2022</p>
+</div>
+</div>
+<div class="flex w-full sm:w-auto gap-3">
+<button class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-gray-100 dark:bg-[#233648] text-gray-700 dark:text-white text-sm font-bold leading-normal tracking-[0.015em] flex-1 sm:flex-auto gap-2">
+<span class="material-symbols-outlined text-base">edit</span>
+<span class="truncate">Edit</span>
+</button>
+<button class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-red-500/10 text-red-500 text-sm font-bold leading-normal tracking-[0.015em] flex-1 sm:flex-auto gap-2">
+<span class="material-symbols-outlined text-base">delete</span>
+<span class="truncate">Delete</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Tabs -->
+<div class="bg-white dark:bg-[#111a22] rounded-xl border border-gray-200 dark:border-[#324d67]">
+<div class="border-b border-gray-200 dark:border-[#324d67]">
+<nav aria-label="Tabs" class="flex -mb-px px-6">
+<a aria-current="page" class="shrink-0 border-b-2 border-primary px-1 py-4 text-sm font-medium text-primary" href="#">Job History</a>
+<a class="shrink-0 border-b-2 border-transparent px-4 py-4 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700 dark:text-gray-400 dark:hover:border-gray-600 dark:hover:text-gray-300" href="#">Billing</a>
+<a class="shrink-0 border-b-2 border-transparent px-4 py-4 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700 dark:text-gray-400 dark:hover:border-gray-600 dark:hover:text-gray-300" href="#">Details</a>
+</nav>
+</div>
+<!-- Job History Content -->
+<div class="p-6">
+<div class="flow-root">
+<div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+<div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
+<table class="min-w-full divide-y divide-gray-200 dark:divide-[#324d67]">
+<thead>
+<tr>
+<th class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 dark:text-white sm:pl-0" scope="col">Job</th>
+<th class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 dark:text-white" scope="col">Date</th>
+<th class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 dark:text-white" scope="col">Status</th>
+<th class="relative py-3.5 pl-3 pr-4 sm:pr-0" scope="col"><span class="sr-only">View</span></th>
+</tr>
+</thead>
+<tbody class="divide-y divide-gray-200 dark:divide-[#324d67]">
+<tr>
+<td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-0">
+<div class="font-medium text-gray-900 dark:text-white">Office Network Setup</div>
+<div class="text-gray-500 dark:text-gray-400">#JOB-0024</div>
+</td>
+<td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500 dark:text-gray-400">June 1, 2024</td>
+<td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500 dark:text-gray-400">
+<span class="inline-flex items-center rounded-md bg-success/10 px-2 py-1 text-xs font-medium text-success ring-1 ring-inset ring-success/20">Completed</span>
+</td>
+<td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
+<a class="text-primary hover:text-primary/80" href="#">View<span class="sr-only">, Office Network Setup</span></a>
+</td>
+</tr>
+<tr>
+<td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-0">
+<div class="font-medium text-gray-900 dark:text-white">Server Maintenance</div>
+<div class="text-gray-500 dark:text-gray-400">#JOB-0019</div>
+</td>
+<td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500 dark:text-gray-400">May 15, 2024</td>
+<td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500 dark:text-gray-400">
+<span class="inline-flex items-center rounded-md bg-success/10 px-2 py-1 text-xs font-medium text-success ring-1 ring-inset ring-success/20">Completed</span>
+</td>
+<td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
+<a class="text-primary hover:text-primary/80" href="#">View<span class="sr-only">, Server Maintenance</span></a>
+</td>
+</tr>
+<tr>
+<td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-0">
+<div class="font-medium text-gray-900 dark:text-white">Software Installation</div>
+<div class="text-gray-500 dark:text-gray-400">#JOB-0012</div>
+</td>
+<td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500 dark:text-gray-400">April 20, 2024</td>
+<td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500 dark:text-gray-400">
+<span class="inline-flex items-center rounded-md bg-success/10 px-2 py-1 text-xs font-medium text-success ring-1 ring-inset ring-success/20">Completed</span>
+</td>
+<td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
+<a class="text-primary hover:text-primary/80" href="#">View<span class="sr-only">, Software Installation</span></a>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

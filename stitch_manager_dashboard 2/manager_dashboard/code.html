@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>JobSite Manager Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#137fec",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings:
+                'FILL' 0,
+                'wght' 400,
+                'GRAD' 0,
+                'opsz' 24
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display">
+<div class="flex h-screen">
+<!-- SideNavBar -->
+<aside class="w-64 flex-shrink-0 bg-[#0c141b] p-4 flex flex-col justify-between">
+<div class="flex flex-col gap-4">
+<div class="flex items-center gap-3 p-2">
+<span class="material-symbols-outlined text-primary text-3xl">task_alt</span>
+<h1 class="text-white text-xl font-bold">JobSite</h1>
+</div>
+<div class="flex flex-col gap-2 mt-4">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg bg-primary/20 text-primary" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<p class="text-sm font-medium leading-normal">Dashboard</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/10 text-white/80" href="#">
+<span class="material-symbols-outlined">work</span>
+<p class="text-sm font-medium leading-normal">Jobs</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/10 text-white/80" href="#">
+<span class="material-symbols-outlined">group</span>
+<p class="text-sm font-medium leading-normal">Workers</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/10 text-white/80" href="#">
+<span class="material-symbols-outlined">business_center</span>
+<p class="text-sm font-medium leading-normal">Clients</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/10 text-white/80" href="#">
+<span class="material-symbols-outlined">assessment</span>
+<p class="text-sm font-medium leading-normal">Reports</p>
+</a>
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/10 text-white/80" href="#">
+<span class="material-symbols-outlined">settings</span>
+<p class="text-sm font-medium leading-normal">Settings</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/10 text-white/80" href="#">
+<span class="material-symbols-outlined">logout</span>
+<p class="text-sm font-medium leading-normal">Logout</p>
+</a>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 overflow-y-auto">
+<div class="p-8">
+<!-- PageHeading & Header -->
+<header class="flex flex-wrap justify-between items-center gap-4 mb-8">
+<div class="flex min-w-72 flex-col gap-2">
+<h1 class="text-white text-4xl font-black leading-tight tracking-[-0.033em]">Manager Dashboard</h1>
+<p class="text-gray-400 text-base font-normal leading-normal">Overview of daily operations, scheduling, and system monitoring.</p>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">search</span>
+<input class="form-input w-64 rounded-lg border border-[#324d67] bg-[#192633] py-2 pl-10 pr-4 text-white placeholder:text-gray-400 focus:border-primary focus:ring-primary" placeholder="Search..." type="text"/>
+</div>
+<button class="relative rounded-full p-2 text-white/80 hover:bg-white/10">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-1 right-1 block h-2 w-2 rounded-full bg-primary ring-2 ring-[#101922]"></span>
+</button>
+<div class="flex items-center gap-3">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" data-alt="Manager's profile picture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCcW6S_3E0gFl3GylpBwewxWe3ITdwGv6RU0h8eSWjFd7vmK6Nsux5SATulzsZh7uzlWLfCUzGOqko1_nErq7On5rN5kTluqFI0pi7W7EmRk2IVwOTDfX-aDvCu0hbu5Q2njJeUI39l_hMhFvEObq5T75y7AdT_UgFb4jpYl97ykMe5y3hGb8pJ2PD_JFEijPbUfJQ4HfLB-o7kxPsnPHwrUwGrZClLPsTyDf4QNrcuOsOOakqH8dFqHcGhLl-Kx3FI16YRED6AarNY");'></div>
+<div class="flex flex-col">
+<p class="text-white text-sm font-medium leading-normal">Alex Grim</p>
+<p class="text-gray-400 text-xs font-normal leading-normal">manager@jobsite.com</p>
+</div>
+</div>
+</div>
+</header>
+<!-- Stats -->
+<section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+<div class="flex flex-col gap-2 rounded-xl p-6 border border-[#324d67] bg-[#0c141b]">
+<p class="text-white/80 text-base font-medium leading-normal">Total Revenue</p>
+<p class="text-white tracking-light text-3xl font-bold leading-tight">$12,450</p>
+<p class="text-[#50E3C2] text-base font-medium leading-normal flex items-center gap-1"><span class="material-symbols-outlined text-lg">arrow_upward</span>+5.2%</p>
+</div>
+<div class="flex flex-col gap-2 rounded-xl p-6 border border-[#324d67] bg-[#0c141b]">
+<p class="text-white/80 text-base font-medium leading-normal">Pending Invoices</p>
+<p class="text-white tracking-light text-3xl font-bold leading-tight">18</p>
+<p class="text-[#50E3C2] text-base font-medium leading-normal flex items-center gap-1"><span class="material-symbols-outlined text-lg">arrow_upward</span>+2.1%</p>
+</div>
+<div class="flex flex-col gap-2 rounded-xl p-6 border border-[#324d67] bg-[#0c141b]">
+<p class="text-white/80 text-base font-medium leading-normal">Jobs Completed Today</p>
+<p class="text-white tracking-light text-3xl font-bold leading-tight">32</p>
+<p class="text-[#F5A623] text-base font-medium leading-normal flex items-center gap-1"><span class="material-symbols-outlined text-lg">arrow_downward</span>-1.5%</p>
+</div>
+</section>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<!-- Main column -->
+<div class="lg:col-span-2 flex flex-col gap-8">
+<!-- Job Scheduler Form -->
+<section>
+<h2 class="text-white text-[22px] font-bold leading-tight tracking-[-0.015em] mb-4">Schedule New Job</h2>
+<div class="bg-[#0c141b] border border-[#324d67] rounded-xl p-6">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<label class="flex flex-col">
+<p class="text-white/80 text-sm font-medium leading-normal pb-2">Client Name</p>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-white focus:outline-0 focus:ring-0 border border-[#324d67] bg-[#192633] focus:border-primary h-12 placeholder:text-gray-400 p-3 text-sm font-normal leading-normal" placeholder="Select a client" value=""/>
+</label>
+<label class="flex flex-col">
+<p class="text-white/80 text-sm font-medium leading-normal pb-2">Job Address</p>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-white focus:outline-0 focus:ring-0 border border-[#324d67] bg-[#192633] focus:border-primary h-12 placeholder:text-gray-400 p-3 text-sm font-normal leading-normal" placeholder="Enter job location" value=""/>
+</label>
+<label class="flex flex-col">
+<p class="text-white/80 text-sm font-medium leading-normal pb-2">Service Type</p>
+<select class="form-select flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-white focus:outline-0 focus:ring-0 border border-[#324d67] bg-[#192633] focus:border-primary h-12 p-3 text-sm font-normal leading-normal">
+<option>Plumbing</option>
+<option>Electrical</option>
+<option>Cleaning</option>
+</select>
+</label>
+<label class="flex flex-col">
+<p class="text-white/80 text-sm font-medium leading-normal pb-2">Preferred Date &amp; Time</p>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-white focus:outline-0 focus:ring-0 border border-[#324d67] bg-[#192633] focus:border-primary h-12 placeholder:text-gray-400 p-3 text-sm font-normal leading-normal" type="datetime-local"/>
+</label>
+</div>
+<div class="mt-6 flex justify-end">
+<button class="bg-primary text-white font-medium py-3 px-6 rounded-lg hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-[#101922]">Schedule Job</button>
+</div>
+</div>
+</section>
+<!-- Route Monitor -->
+<section>
+<h2 class="text-white text-[22px] font-bold leading-tight tracking-[-0.015em] mb-4">Live Route Monitor</h2>
+<div class="bg-[#0c141b] border border-[#324d67] rounded-xl h-96 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Map showing worker locations and job sites in a city" data-location="Los Angeles" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCjiycK7yVFpk1ximLgItJpF2dL1GS4Cx4OPWvAqBJjwgkxE76glM1O7_PJ71RFPnOoEAC8mn7l0sYpmJoDQeMHa5q2VnGz08eNPGDePuVFLaO7c3MvOGCPPB0IXm4o4wnDHJESOI8hnWiN8lTHir9HkR00e6IltFXIuuWujXY2iuYZzNAQUN6p3wGoezZXzU6_fYtGDoY-oiqP0AW6FHSqXkiE67nagRU7784Oj8RX0iZSWhCG-XFnDTWB79aLWmHHdjdkQUNKSx70"/>
+</div>
+</section>
+</div>
+<!-- Right sidebar/panel -->
+<aside class="lg:col-span-1 flex flex-col gap-8">
+<!-- Worker Availability Panel -->
+<section>
+<h2 class="text-white text-[22px] font-bold leading-tight tracking-[-0.015em] mb-4">Worker Status &amp; Availability</h2>
+<div class="bg-[#0c141b] border border-[#324d67] rounded-xl p-6 flex flex-col gap-4">
+<!-- Worker Card 1 -->
+<div class="flex items-center gap-4">
+<img class="size-12 rounded-full object-cover" data-alt="Profile picture of John Doe" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAo0pPIlzbDheoAuIkv5ShAjQN2OkBEKD3OKK59VEHrXwRsze_zR3nvXiinIsu3svf42x68CK0Uo7KmxYp5I9PqueNXGZSY_A4-TjdqpU1zeAQK278-AM4SJ6UhiTPCbzr5U23BvCTp5thm6lIXlk9HYEOkgADWO5SWMy_FPefHr5SKRq5U9k22uAZXqhbMmdfSyxJuZMf2fx4vq0qSFSZK5RDESJc5hBR7LwIg4c2rUS_WRPEJvEf-0gviuaIJld1tMyBoIXtH6fsW"/>
+<div class="flex-1">
+<p class="text-white font-medium">John Doe</p>
+<div class="flex items-center gap-2">
+<span class="h-2 w-2 rounded-full bg-[#50E3C2]"></span>
+<p class="text-[#50E3C2] text-xs">Available</p>
+</div>
+</div>
+<button class="text-white/60 hover:text-white">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+<!-- Worker Card 2 -->
+<div class="flex items-center gap-4">
+<img class="size-12 rounded-full object-cover" data-alt="Profile picture of Mike Williams" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB7xmc9jgdQ0edNNBsoi3cCkXQ8Uu1Swcy2KLvctiQAoFxNN-HDoFGNzXRvdRiEcHcaT29k3hwRIC-SEpz7HtkK8t_OAbgDZxTRZl1J7xFH1yMnaNyBdAOhwwGf81eKwhn3YZJNH2XwS3WMtdFcrwWFytQioiHl_beRc5jjNzS121OZtV9-CR2R0eLKAGRYYJ8SFa--U5u9Oz9OiKiPfhoKmWt5PMEkk3TTq1ZEzkTAiO6QO6eAh19zN8LcDDFLHUWaxl_bZ_j2h9ks"/>
+<div class="flex-1">
+<p class="text-white font-medium">Mike Williams</p>
+<div class="flex items-center gap-2">
+<span class="h-2 w-2 rounded-full bg-[#F5A623]"></span>
+<p class="text-[#F5A623] text-xs">On Route</p>
+</div>
+</div>
+<button class="text-white/60 hover:text-white">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+<!-- Worker Card 3 -->
+<div class="flex items-center gap-4">
+<img class="size-12 rounded-full object-cover" data-alt="Profile picture of Jane Smith" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA7E26z_zu6KN5UbQtuhILorUzQNmMl90gwiQ0JI2goXba1WAPzP1JD5Dbt9rWYjvii0Pe04txwYzg8_rqAT43zuPY-yvKNHSYowm-PU1qziOXaXBnc37MkAA5cUjn7b3op2b92EGRL490jV9pvYTxmIFd6tLeMcVBPnIb3ylJMDIMGN323rOS6xy1Cz4XhPDZ-V_mh2YtZeMq34mUuh1mgJz4K8TJuTxX_oHJ66t9kTexWyvRoc1u31DZE0dUS529GJgC5_YDu_Fsc"/>
+<div class="flex-1">
+<p class="text-white font-medium">Jane Smith</p>
+<div class="flex items-center gap-2">
+<span class="h-2 w-2 rounded-full bg-red-500"></span>
+<p class="text-red-500 text-xs">Busy</p>
+</div>
+</div>
+<button class="text-white/60 hover:text-white">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Settings Panel -->
+<section>
+<h2 class="text-white text-[22px] font-bold leading-tight tracking-[-0.015em] mb-4">System Status</h2>
+<div class="bg-[#0c141b] border border-[#324d67] rounded-xl p-6 flex flex-col gap-5">
+<div class="flex justify-between items-center">
+<p class="text-white/80">Language</p>
+<p class="text-white font-medium">English (US)</p>
+</div>
+<div class="flex justify-between items-center">
+<p class="text-white/80">Timezone</p>
+<p class="text-white font-medium">PST (UTC-8)</p>
+</div>
+<div class="flex justify-between items-center">
+<p class="text-white/80">API Health</p>
+<div class="flex items-center gap-2">
+<span class="h-2 w-2 rounded-full bg-[#50E3C2]"></span>
+<p class="text-[#50E3C2] text-sm">Normal</p>
+</div>
+</div>
+<div class="flex justify-between items-center">
+<p class="text-white/80">Database Status</p>
+<div class="flex items-center gap-2">
+<span class="h-2 w-2 rounded-full bg-[#50E3C2]"></span>
+<p class="text-[#50E3C2] text-sm">Connected</p>
+</div>
+</div>
+</div>
+</section>
+</aside>
+</div>
+</div>
+</main>
+</div>
+</body></html>

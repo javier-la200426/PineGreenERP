@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>JobSite - All Jobs</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#137fec",
+              "background-light": "#f6f7f8",
+              "background-dark": "#101922",
+              "status-completed": "#28A745",
+              "status-progress": "#FFC107",
+              "status-pending": "#6C757D",
+              "status-overdue": "#DC3545",
+            },
+            fontFamily: {
+              "display": ["Inter", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-800 dark:text-slate-200">
+<div class="flex min-h-screen">
+<!-- SideNavBar -->
+<aside class="flex flex-col w-64 bg-[#f6f7f8] dark:bg-[#111a22] p-4 border-r border-slate-200 dark:border-slate-800">
+<div class="flex flex-col justify-between h-full">
+<div class="flex flex-col gap-4">
+<div class="flex items-center gap-3">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" data-alt="User profile picture of Eleanor Vance" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuClNQ9U3-LTJKaqlVWNPgWphYg5-Bj1mCu7I4AFicBH1aO1gAL7rOO7CogdissXSj7e4Wfos79Bqpye1QR7zXcDcYyliGnCetAexcPvg6xPBJ8o_5ZP1_I4Fp4hhFnksPDtOyb8M94JDeUa3Ue8w__u8GkBEC2JUt0fADjU-gN9Z_1aDtzAoDcOiveCTWDz8f9Ri8g-RjTz3qwLDWx1KhEGmYYJxvYtOyMeYIhrNuTQKAlUGNvS27gLQ4BYHDaNEZnOFXPVprU4lRPc");'></div>
+<div class="flex flex-col">
+<h1 class="text-slate-900 dark:text-white text-base font-medium leading-normal">Eleanor Vance</h1>
+<p class="text-slate-500 dark:text-[#92adc9] text-sm font-normal leading-normal">Manager</p>
+</div>
+</div>
+<nav class="flex flex-col gap-2 mt-4">
+<a class="flex items-center gap-3 px-3 py-2 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-800 rounded-lg" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<p class="text-sm font-medium leading-normal">Dashboard</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-white bg-primary" href="#">
+<span class="material-symbols-outlined">work</span>
+<p class="text-sm font-medium leading-normal">Jobs</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-800 rounded-lg" href="#">
+<span class="material-symbols-outlined">group</span>
+<p class="text-sm font-medium leading-normal">Workers</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-800 rounded-lg" href="#">
+<span class="material-symbols-outlined">business_center</span>
+<p class="text-sm font-medium leading-normal">Clients</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-800 rounded-lg" href="#">
+<span class="material-symbols-outlined">credit_card</span>
+<p class="text-sm font-medium leading-normal">Payments</p>
+</a>
+</nav>
+</div>
+<div class="flex flex-col gap-1">
+<a class="flex items-center gap-3 px-3 py-2 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-800 rounded-lg" href="#">
+<span class="material-symbols-outlined">settings</span>
+<p class="text-sm font-medium leading-normal">Settings</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-800 rounded-lg" href="#">
+<span class="material-symbols-outlined">logout</span>
+<p class="text-sm font-medium leading-normal">Log out</p>
+</a>
+</div>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 p-6 lg:p-8">
+<div class="w-full max-w-7xl mx-auto">
+<!-- PageHeading -->
+<header class="flex flex-wrap items-center justify-between gap-4 mb-6">
+<div class="flex flex-col gap-1">
+<h1 class="text-slate-900 dark:text-white text-3xl font-bold leading-tight tracking-tight">All Jobs</h1>
+<p class="text-slate-500 dark:text-[#92adc9] text-base font-normal leading-normal">Oversee all jobs and manage their status.</p>
+</div>
+<button class="flex items-center justify-center gap-2 overflow-hidden rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold leading-normal tracking-wide shadow-sm hover:bg-primary/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary">
+<span class="material-symbols-outlined" style="font-size: 20px;">add_circle</span>
+<span class="truncate">Create New Job</span>
+</button>
+</header>
+<!-- Toolbar & Filters -->
+<div class="p-4 bg-white dark:bg-[#111a22] rounded-xl border border-slate-200 dark:border-slate-800 mb-6">
+<!-- SearchBar -->
+<div class="mb-4">
+<label class="flex flex-col w-full">
+<div class="flex w-full items-stretch rounded-lg h-12 bg-slate-100 dark:bg-[#233648]">
+<div class="text-slate-400 dark:text-[#92adc9] flex items-center justify-center pl-4">
+<span class="material-symbols-outlined">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden text-slate-800 dark:text-white focus:outline-0 focus:ring-0 border-none bg-transparent h-full placeholder:text-slate-400 dark:placeholder:text-[#92adc9] px-2 text-base font-normal leading-normal" placeholder="Search by job name, client, or worker..." value=""/>
+</div>
+</label>
+</div>
+<!-- Chips / Filters -->
+<div class="flex flex-wrap items-center gap-3">
+<button class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-slate-100 dark:bg-[#233648] px-3 text-slate-700 dark:text-white hover:bg-slate-200 dark:hover:bg-slate-700">
+<span class="material-symbols-outlined" style="font-size: 20px;">label</span>
+<p class="text-sm font-medium leading-normal">Status: All</p>
+<span class="material-symbols-outlined" style="font-size: 20px;">arrow_drop_down</span>
+</button>
+<button class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-slate-100 dark:bg-[#233648] px-3 text-slate-700 dark:text-white hover:bg-slate-200 dark:hover:bg-slate-700">
+<span class="material-symbols-outlined" style="font-size: 20px;">person</span>
+<p class="text-sm font-medium leading-normal">Worker</p>
+<span class="material-symbols-outlined" style="font-size: 20px;">arrow_drop_down</span>
+</button>
+<button class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-slate-100 dark:bg-[#233648] px-3 text-slate-700 dark:text-white hover:bg-slate-200 dark:hover:bg-slate-700">
+<span class="material-symbols-outlined" style="font-size: 20px;">calendar_today</span>
+<p class="text-sm font-medium leading-normal">Due Date</p>
+<span class="material-symbols-outlined" style="font-size: 20px;">arrow_drop_down</span>
+</button>
+<div class="flex-grow"></div>
+<button class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-lg px-3 text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-[#233648]">
+<span class="material-symbols-outlined" style="font-size: 20px;">refresh</span>
+<p class="text-sm font-medium leading-normal">Reset</p>
+</button>
+</div>
+</div>
+<!-- Jobs Table -->
+<div class="overflow-x-auto bg-white dark:bg-[#111a22] rounded-xl border border-slate-200 dark:border-slate-800">
+<table class="w-full text-sm text-left text-slate-500 dark:text-slate-400">
+<thead class="text-xs text-slate-700 dark:text-slate-300 uppercase bg-slate-50 dark:bg-slate-800/50">
+<tr>
+<th class="p-4 w-4" scope="col"><input class="form-checkbox rounded border-slate-300 dark:border-slate-600 bg-slate-100 dark:bg-slate-900 text-primary focus:ring-primary/50" type="checkbox"/></th>
+<th class="px-6 py-3" scope="col"><button class="flex items-center gap-1 group">Job <span class="material-symbols-outlined text-base opacity-0 group-hover:opacity-100 transition-opacity">swap_vert</span></button></th>
+<th class="px-6 py-3" scope="col"><button class="flex items-center gap-1 group">Client <span class="material-symbols-outlined text-base opacity-0 group-hover:opacity-100 transition-opacity">swap_vert</span></button></th>
+<th class="px-6 py-3" scope="col"><button class="flex items-center gap-1 group">Worker <span class="material-symbols-outlined text-base opacity-0 group-hover:opacity-100 transition-opacity">swap_vert</span></button></th>
+<th class="px-6 py-3" scope="col"><button class="flex items-center gap-1 group">Due Date <span class="material-symbols-outlined text-base opacity-0 group-hover:opacity-100 transition-opacity">swap_vert</span></button></th>
+<th class="px-6 py-3" scope="col">Status</th>
+<th class="px-6 py-3" scope="col">Actions</th>
+</tr>
+</thead>
+<tbody>
+<tr class="border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/30">
+<td class="p-4 w-4"><input class="form-checkbox rounded border-slate-300 dark:border-slate-600 bg-slate-100 dark:bg-slate-900 text-primary focus:ring-primary/50" type="checkbox"/></td>
+<td class="px-6 py-4 font-medium text-slate-900 dark:text-white whitespace-nowrap">Office Renovation #1024</td>
+<td class="px-6 py-4">Innovate Inc.</td>
+<td class="px-6 py-4">Liam Gallagher</td>
+<td class="px-6 py-4">2024-08-15</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1.5 py-1 px-2.5 rounded-full text-xs font-medium bg-status-progress/10 text-status-progress"><span class="size-1.5 rounded-full bg-status-progress"></span>In Progress</span>
+</td>
+<td class="px-6 py-4 flex items-center gap-2">
+<button class="p-1.5 text-slate-500 dark:text-slate-400 hover:text-primary dark:hover:text-primary rounded-md hover:bg-slate-200 dark:hover:bg-slate-700"><span class="material-symbols-outlined" style="font-size: 20px;">edit</span></button>
+<button class="p-1.5 text-slate-500 dark:text-slate-400 hover:text-primary dark:hover:text-primary rounded-md hover:bg-slate-200 dark:hover:bg-slate-700"><span class="material-symbols-outlined" style="font-size: 20px;">visibility</span></button>
+<button class="p-1.5 text-slate-500 dark:text-slate-400 hover:text-status-overdue dark:hover:text-status-overdue rounded-md hover:bg-slate-200 dark:hover:bg-slate-700"><span class="material-symbols-outlined" style="font-size: 20px;">delete</span></button>
+</td>
+</tr>
+<tr class="border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/30">
+<td class="p-4 w-4"><input class="form-checkbox rounded border-slate-300 dark:border-slate-600 bg-slate-100 dark:bg-slate-900 text-primary focus:ring-primary/50" type="checkbox"/></td>
+<td class="px-6 py-4 font-medium text-slate-900 dark:text-white whitespace-nowrap">Garden Landscaping</td>
+<td class="px-6 py-4">Sunset Villas</td>
+<td class="px-6 py-4">Ava Chen</td>
+<td class="px-6 py-4">2024-07-22</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1.5 py-1 px-2.5 rounded-full text-xs font-medium bg-status-completed/10 text-status-completed"><span class="size-1.5 rounded-full bg-status-completed"></span>Completed</span>
+</td>
+<td class="px-6 py-4 flex items-center gap-2">
+<button class="p-1.5 text-slate-500 dark:text-slate-400 hover:text-primary dark:hover:text-primary rounded-md hover:bg-slate-200 dark:hover:bg-slate-700"><span class="material-symbols-outlined" style="font-size: 20px;">edit</span></button>
+<button class="p-1.5 text-slate-500 dark:text-slate-400 hover:text-primary dark:hover:text-primary rounded-md hover:bg-slate-200 dark:hover:bg-slate-700"><span class="material-symbols-outlined" style="font-size: 20px;">visibility</span></button>
+<button class="p-1.5 text-slate-500 dark:text-slate-400 hover:text-status-overdue dark:hover:text-status-overdue rounded-md hover:bg-slate-200 dark:hover:bg-slate-700"><span class="material-symbols-outlined" style="font-size: 20px;">delete</span></button>
+</td>
+</tr>
+<tr class="border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/30">
+<td class="p-4 w-4"><input class="form-checkbox rounded border-slate-300 dark:border-slate-600 bg-slate-100 dark:bg-slate-900 text-primary focus:ring-primary/50" type="checkbox"/></td>
+<td class="px-6 py-4 font-medium text-slate-900 dark:text-white whitespace-nowrap">HVAC Installation</td>
+<td class="px-6 py-4">Tech Park One</td>
+<td class="px-6 py-4">Mason Rodriguez</td>
+<td class="px-6 py-4">2024-09-01</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1.5 py-1 px-2.5 rounded-full text-xs font-medium bg-status-pending/10 text-status-pending"><span class="size-1.5 rounded-full bg-status-pending"></span>Pending</span>
+</td>
+<td class="px-6 py-4 flex items-center gap-2">
+<button class="p-1.5 text-slate-500 dark:text-slate-400 hover:text-primary dark:hover:text-primary rounded-md hover:bg-slate-200 dark:hover:bg-slate-700"><span class="material-symbols-outlined" style="font-size: 20px;">edit</span></button>
+<button class="p-1.5 text-slate-500 dark:text-slate-400 hover:text-primary dark:hover:text-primary rounded-md hover:bg-slate-200 dark:hover:bg-slate-700"><span class="material-symbols-outlined" style="font-size: 20px;">visibility</span></button>
+<button class="p-1.5 text-slate-500 dark:text-slate-400 hover:text-status-overdue dark:hover:text-status-overdue rounded-md hover:bg-slate-200 dark:hover:bg-slate-700"><span class="material-symbols-outlined" style="font-size: 20px;">delete</span></button>
+</td>
+</tr>
+<tr class="border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/30">
+<td class="p-4 w-4"><input class="form-checkbox rounded border-slate-300 dark:border-slate-600 bg-slate-100 dark:bg-slate-900 text-primary focus:ring-primary/50" type="checkbox"/></td>
+<td class="px-6 py-4 font-medium text-slate-900 dark:text-white whitespace-nowrap">Website Redesign</td>
+<td class="px-6 py-4">Digital Future Co.</td>
+<td class="px-6 py-4">Sophia Williams</td>
+<td class="px-6 py-4">2024-06-30</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1.5 py-1 px-2.5 rounded-full text-xs font-medium bg-status-overdue/10 text-status-overdue"><span class="size-1.5 rounded-full bg-status-overdue"></span>Overdue</span>
+</td>
+<td class="px-6 py-4 flex items-center gap-2">
+<button class="p-1.5 text-slate-500 dark:text-slate-400 hover:text-primary dark:hover:text-primary rounded-md hover:bg-slate-200 dark:hover:bg-slate-700"><span class="material-symbols-outlined" style="font-size: 20px;">edit</span></button>
+<button class="p-1.5 text-slate-500 dark:text-slate-400 hover:text-primary dark:hover:text-primary rounded-md hover:bg-slate-200 dark:hover:bg-slate-700"><span class="material-symbols-outlined" style="font-size: 20px;">visibility</span></button>
+<button class="p-1.5 text-slate-500 dark:text-slate-400 hover:text-status-overdue dark:hover:text-status-overdue rounded-md hover:bg-slate-200 dark:hover:bg-slate-700"><span class="material-symbols-outlined" style="font-size: 20px;">delete</span></button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination -->
+<nav aria-label="Table navigation" class="flex flex-col md:flex-row justify-between items-start md:items-center space-y-3 md:space-y-0 p-4">
+<span class="text-sm font-normal text-slate-500 dark:text-slate-400">
+                        Showing
+                        <span class="font-semibold text-slate-900 dark:text-white">1-10</span>
+                        of
+                        <span class="font-semibold text-slate-900 dark:text-white">100</span>
+</span>
+<ul class="inline-flex items-stretch -space-x-px">
+<li>
+<a class="flex items-center justify-center h-full py-1.5 px-3 ml-0 text-slate-500 bg-white rounded-l-lg border border-slate-300 hover:bg-slate-100 hover:text-slate-700 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-400 dark:hover:bg-slate-700 dark:hover:text-white" href="#">
+<span class="material-symbols-outlined" style="font-size: 20px;">chevron_left</span>
+</a>
+</li>
+<li>
+<a class="flex items-center justify-center text-sm py-2 px-3 leading-tight text-slate-500 bg-white border border-slate-300 hover:bg-slate-100 hover:text-slate-700 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-400 dark:hover:bg-slate-700 dark:hover:text-white" href="#">1</a>
+</li>
+<li>
+<a class="flex items-center justify-center text-sm py-2 px-3 leading-tight text-primary bg-primary/10 border border-primary dark:bg-slate-700 dark:border-slate-600 dark:text-white" href="#">2</a>
+</li>
+<li>
+<a class="flex items-center justify-center text-sm py-2 px-3 leading-tight text-slate-500 bg-white border border-slate-300 hover:bg-slate-100 hover:text-slate-700 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-400 dark:hover:bg-slate-700 dark:hover:text-white" href="#">...</a>
+</li>
+<li>
+<a class="flex items-center justify-center text-sm py-2 px-3 leading-tight text-slate-500 bg-white border border-slate-300 hover:bg-slate-100 hover:text-slate-700 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-400 dark:hover:bg-slate-700 dark:hover:text-white" href="#">10</a>
+</li>
+<li>
+<a class="flex items-center justify-center h-full py-1.5 px-3 leading-tight text-slate-500 bg-white rounded-r-lg border border-slate-300 hover:bg-slate-100 hover:text-slate-700 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-400 dark:hover:bg-slate-700 dark:hover:text-white" href="#">
+<span class="material-symbols-outlined" style="font-size: 20px;">chevron_right</span>
+</a>
+</li>
+</ul>
+</nav>
+</div>
+</main>
+</div>
+</body></html>
