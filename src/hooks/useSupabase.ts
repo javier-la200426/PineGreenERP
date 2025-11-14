@@ -96,7 +96,7 @@ export function useWorkers() {
 
 // Authentication hooks
 export function useAuth() {
-  const [user, setUser] = useState<any>(null)
+  const [user] = useState<any>(null)
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {

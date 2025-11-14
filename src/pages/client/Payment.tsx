@@ -105,7 +105,6 @@ export default function ClientPayment() {
                     <Icon
                       name="help"
                       className="cursor-help text-base text-zinc-500 dark:text-zinc-400"
-                      title="The 3-4 digit security code on the back of your card."
                     />
                   </div>
                   <input

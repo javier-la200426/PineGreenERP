@@ -15,7 +15,7 @@ interface SidebarProps {
   userRole?: 'manager' | 'worker' | 'client'
 }
 
-export default function Sidebar({ links, bottomLinks, userRole = 'manager' }: SidebarProps) {
+export default function Sidebar({ links, bottomLinks }: SidebarProps) {
   const location = useLocation()
   const { t } = useTranslation()
 

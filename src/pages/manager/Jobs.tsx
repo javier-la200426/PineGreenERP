@@ -1,6 +1,5 @@
 import { useTranslation } from 'react-i18next'
 import Sidebar from '@/components/Sidebar'
-import Header from '@/components/Header'
 import Icon from '@/components/Icon'
 import { useJobs } from '@/hooks/useSupabase'
 
