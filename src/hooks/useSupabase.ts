@@ -19,7 +19,12 @@ export function useJobs() {
           .select(`
             *,
             client:clients(name, company),
-            worker:workers(name)
+            worker:workers(name),
+            route_jobs(
+              id,
+              job_order,
+              route:routes(id, route_date, status, worker:workers(name))
+            )
           `)
           .order('created_at', { ascending: false })
         
@@ -35,7 +40,7 @@ export function useJobs() {
     fetchJobs()
   }, [])
 
-  return { jobs, loading, error }
+  return { jobs, loading, error, refetch: () => setLoading(true) }
 }
 
 export function useClients() {
@@ -224,9 +229,11 @@ export function useWorkersWithRoutes(date?: string) {
             route_date,
             status,
             total_distance_meters,
+            total_duration_seconds,
+            optimized_path,
             worker_id,
             worker:workers(id, name, email),
-            route_jobs(id)
+            route_jobs(id, job_order, location_lat, location_lng)
           `)
           .order('created_at', { ascending: false })
 

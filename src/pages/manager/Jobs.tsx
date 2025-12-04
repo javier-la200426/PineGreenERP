@@ -3,13 +3,20 @@ import { useTranslation } from 'react-i18next'
 import Sidebar from '@/components/Sidebar'
 import Icon from '@/components/Icon'
 import RouteOptimizerModal from '@/components/RouteOptimizerModal'
-import { useJobs, useWorkers } from '@/hooks/useSupabase'
+import RoutesViewerModal from '@/components/RoutesViewerModal'
+import { useJobs, useWorkers, useWorkersWithRoutes } from '@/hooks/useSupabase'
 
 export default function ManagerJobs() {
   const { t } = useTranslation()
   const { jobs: jobsData, loading, error } = useJobs()
   const { workers } = useWorkers()
   const [isOptimizerModalOpen, setIsOptimizerModalOpen] = useState(false)
+  const [isRoutesViewerOpen, setIsRoutesViewerOpen] = useState(false)
+  
+  // Get today's routes
+  const today = new Date().toISOString().split('T')[0]
+  const { workersWithRoutes } = useWorkersWithRoutes(today)
+  const hasRoutesToday = workersWithRoutes.some(r => r.jobCount > 0)
 
   const sidebarLinks = [
     { to: '/manager/dashboard', icon: 'dashboard', label: t('common.dashboard') },
@@ -25,14 +32,27 @@ export default function ManagerJobs() {
   ]
 
   // Transform Supabase data to match component format
-  const jobs = jobsData.map((job: any) => ({
-    id: job.id,
-    name: job.title,
-    client: job.client?.company || job.client?.name || 'N/A',
-    worker: job.worker?.name || 'Unassigned',
-    dueDate: job.scheduled_date ? new Date(job.scheduled_date).toISOString().split('T')[0] : 'N/A',
-    status: job.status,
-  }))
+  const jobs = jobsData.map((job: any) => {
+    // Check if job has a route assignment
+    const routeJob = job.route_jobs?.[0]
+    const hasRoute = !!routeJob
+    const routeWorker = routeJob?.route?.worker?.name
+    const routeDate = routeJob?.route?.route_date
+    const routeOrder = routeJob?.job_order
+
+    return {
+      id: job.id,
+      name: job.title,
+      client: job.client?.company || job.client?.name || 'N/A',
+      worker: job.worker?.name || 'Unassigned',
+      dueDate: job.scheduled_date ? new Date(job.scheduled_date).toISOString().split('T')[0] : 'N/A',
+      status: job.status,
+      hasRoute,
+      routeWorker,
+      routeDate,
+      routeOrder,
+    }
+  })
 
   const getStatusBadge = (status: string) => {
     const styles = {
@@ -97,6 +117,15 @@ export default function ManagerJobs() {
               </p>
             </div>
             <div className="flex items-center gap-3">
+              {hasRoutesToday && (
+                <button
+                  onClick={() => setIsRoutesViewerOpen(true)}
+                  className="flex items-center justify-center gap-2 overflow-hidden rounded-lg h-10 px-4 bg-purple-600 text-white text-sm font-bold leading-normal tracking-wide shadow-sm hover:bg-purple-700"
+                >
+                  <Icon name="map" />
+                  <span className="truncate">View Routes</span>
+                </button>
+              )}
               <button
                 onClick={() => setIsOptimizerModalOpen(true)}
                 className="flex items-center justify-center gap-2 overflow-hidden rounded-lg h-10 px-4 bg-green-600 text-white text-sm font-bold leading-normal tracking-wide shadow-sm hover:bg-green-700"
@@ -164,6 +193,7 @@ export default function ManagerJobs() {
                   <th className="px-6 py-3">{t('manager.jobs.client')}</th>
                   <th className="px-6 py-3">{t('manager.jobs.worker')}</th>
                   <th className="px-6 py-3">{t('manager.jobs.dueDate')}</th>
+                  <th className="px-6 py-3">Route</th>
                   <th className="px-6 py-3">{t('manager.jobs.status')}</th>
                   <th className="px-6 py-3">{t('manager.jobs.actions')}</th>
                 </tr>
@@ -183,6 +213,16 @@ export default function ManagerJobs() {
                     <td className="px-6 py-4">{job.client}</td>
                     <td className="px-6 py-4">{job.worker}</td>
                     <td className="px-6 py-4">{job.dueDate}</td>
+                    <td className="px-6 py-4">
+                      {job.hasRoute ? (
+                        <span className="inline-flex items-center gap-1.5 py-1 px-2.5 rounded-full text-xs font-medium bg-purple-500/10 text-purple-400">
+                          <Icon name="route" className="text-sm" />
+                          #{job.routeOrder} - {job.routeWorker}
+                        </span>
+                      ) : (
+                        <span className="text-gray-500 text-xs">—</span>
+                      )}
+                    </td>
                     <td className="px-6 py-4">{getStatusBadge(job.status)}</td>
                     <td className="px-6 py-4 flex items-center gap-2">
                       <button className="p-1.5 text-gray-400 hover:text-primary rounded-md hover:bg-gray-700">
@@ -212,6 +252,12 @@ export default function ManagerJobs() {
             // Optionally refetch jobs to show updated route assignments
             window.location.reload()
           }}
+        />
+
+        {/* Routes Viewer Modal */}
+        <RoutesViewerModal
+          isOpen={isRoutesViewerOpen}
+          onClose={() => setIsRoutesViewerOpen(false)}
         />
       </main>
     </div>
