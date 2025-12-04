@@ -111,10 +111,150 @@ export function useAuth() {
     // })
 
     // return () => subscription.unsubscribe()
-    
+
     setLoading(false)
   }, [])
 
   return { user, loading }
+}
+
+// Routes hooks
+export function useWorkerRoutes(workerId: string, date?: string) {
+  const [routes, setRoutes] = useState<any[]>([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<Error | null>(null)
+
+  useEffect(() => {
+    async function fetchRoutes() {
+      try {
+        let query = supabase
+          .from('routes')
+          .select(`
+            *,
+            route_jobs(
+              id,
+              job_order,
+              location_lat,
+              location_lng,
+              completed_at,
+              job:jobs(id, title, address, latitude, longitude)
+            )
+          `)
+          .eq('worker_id', workerId)
+          .order('route_date', { ascending: false })
+
+        if (date) {
+          query = query.eq('route_date', date)
+        }
+
+        const { data, error } = await query
+
+        if (error) throw error
+        setRoutes(data || [])
+      } catch (err) {
+        setError(err as Error)
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    if (workerId) {
+      fetchRoutes()
+    }
+  }, [workerId, date])
+
+  return { routes, loading, error }
+}
+
+export function useRoute(routeId: string) {
+  const [route, setRoute] = useState<any>(null)
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<Error | null>(null)
+
+  useEffect(() => {
+    async function fetchRoute() {
+      try {
+        const { data, error } = await supabase
+          .from('routes')
+          .select(`
+            *,
+            worker:workers(id, name),
+            route_jobs(
+              id,
+              job_order,
+              location_lat,
+              location_lng,
+              completed_at,
+              job:jobs(id, title, address, latitude, longitude, description)
+            )
+          `)
+          .eq('id', routeId)
+          .single()
+
+        if (error) throw error
+        setRoute(data)
+      } catch (err) {
+        setError(err as Error)
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    if (routeId) {
+      fetchRoute()
+    }
+  }, [routeId])
+
+  return { route, loading, error }
+}
+
+// Fetch all workers who have routes for a given date
+export function useWorkersWithRoutes(date?: string) {
+  const [workersWithRoutes, setWorkersWithRoutes] = useState<any[]>([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<Error | null>(null)
+
+  useEffect(() => {
+    async function fetchWorkersWithRoutes() {
+      try {
+        let query = supabase
+          .from('routes')
+          .select(`
+            id,
+            route_date,
+            status,
+            total_distance_meters,
+            worker_id,
+            worker:workers(id, name, email),
+            route_jobs(id)
+          `)
+          .order('created_at', { ascending: false })
+
+        if (date) {
+          query = query.eq('route_date', date)
+        }
+
+        const { data, error } = await query
+
+        if (error) throw error
+        
+        // Transform data to include job count
+        const transformed = (data || []).map(route => ({
+          ...route,
+          jobCount: route.route_jobs?.length || 0
+        }))
+        
+        setWorkersWithRoutes(transformed)
+      } catch (err) {
+        setError(err as Error)
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchWorkersWithRoutes()
+  }, [date])
+
+  return { workersWithRoutes, loading, error }
 }
 

@@ -1,11 +1,15 @@
+import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import Sidebar from '@/components/Sidebar'
 import Icon from '@/components/Icon'
-import { useJobs } from '@/hooks/useSupabase'
+import RouteOptimizerModal from '@/components/RouteOptimizerModal'
+import { useJobs, useWorkers } from '@/hooks/useSupabase'
 
 export default function ManagerJobs() {
   const { t } = useTranslation()
   const { jobs: jobsData, loading, error } = useJobs()
+  const { workers } = useWorkers()
+  const [isOptimizerModalOpen, setIsOptimizerModalOpen] = useState(false)
 
   const sidebarLinks = [
     { to: '/manager/dashboard', icon: 'dashboard', label: t('common.dashboard') },
@@ -92,10 +96,19 @@ export default function ManagerJobs() {
                 {t('manager.jobs.subtitle')} ({jobs.length} jobs)
               </p>
             </div>
-            <button className="flex items-center justify-center gap-2 overflow-hidden rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold leading-normal tracking-wide shadow-sm hover:bg-primary/90">
-              <Icon name="add_circle" />
-              <span className="truncate">{t('manager.jobs.createNewJob')}</span>
-            </button>
+            <div className="flex items-center gap-3">
+              <button
+                onClick={() => setIsOptimizerModalOpen(true)}
+                className="flex items-center justify-center gap-2 overflow-hidden rounded-lg h-10 px-4 bg-green-600 text-white text-sm font-bold leading-normal tracking-wide shadow-sm hover:bg-green-700"
+              >
+                <Icon name="route" />
+                <span className="truncate">Optimize Routes</span>
+              </button>
+              <button className="flex items-center justify-center gap-2 overflow-hidden rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold leading-normal tracking-wide shadow-sm hover:bg-primary/90">
+                <Icon name="add_circle" />
+                <span className="truncate">{t('manager.jobs.createNewJob')}</span>
+              </button>
+            </div>
           </div>
 
           {/* Toolbar & Filters */}
@@ -188,6 +201,18 @@ export default function ManagerJobs() {
             </table>
           </div>
         </div>
+
+        {/* Route Optimizer Modal */}
+        <RouteOptimizerModal
+          isOpen={isOptimizerModalOpen}
+          onClose={() => setIsOptimizerModalOpen(false)}
+          availableJobs={jobsData}
+          availableWorkers={workers}
+          onOptimizationComplete={() => {
+            // Optionally refetch jobs to show updated route assignments
+            window.location.reload()
+          }}
+        />
       </main>
     </div>
   )
