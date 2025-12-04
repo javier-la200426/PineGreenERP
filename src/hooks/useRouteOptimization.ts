@@ -75,6 +75,7 @@ export function useRouteOptimization() {
       return {
         routes: data.routes,
         savedRoutes,
+        warnings: data.warnings || [],
       }
     } catch (err) {
       const error = err as Error
@@ -119,7 +120,44 @@ export function useRouteOptimization() {
     routeDate: string
   ) => {
     const savedRoutes = []
+    const workerIds = Object.values(routes).map(r => r.worker_id)
 
+    // First, delete existing routes for these workers on this date
+    console.log(`[SAVE] Deleting existing routes for ${workerIds.length} workers on ${routeDate}`)
+    
+    for (const workerId of workerIds) {
+      // Get existing route for this worker/date
+      const { data: existingRoute } = await supabase
+        .from('routes')
+        .select('id')
+        .eq('worker_id', workerId)
+        .eq('route_date', routeDate)
+        .single()
+
+      if (existingRoute) {
+        // Delete route_jobs first (foreign key constraint)
+        await supabase
+          .from('route_jobs')
+          .delete()
+          .eq('route_id', existingRoute.id)
+
+        // Clear route_id from jobs
+        await supabase
+          .from('jobs')
+          .update({ route_id: null, route_order: null })
+          .eq('route_id', existingRoute.id)
+
+        // Delete the route
+        await supabase
+          .from('routes')
+          .delete()
+          .eq('id', existingRoute.id)
+
+        console.log(`[SAVE] Deleted existing route ${existingRoute.id} for worker ${workerId}`)
+      }
+    }
+
+    // Now create new routes
     for (const [workerId, routeData] of Object.entries(routes)) {
       try {
         // 1. Insert route record

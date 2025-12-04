@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import Icon from './Icon'
 import RouteMap, { RouteData } from './RouteMap'
-import { useWorkersWithRoutes, useWorkerRoutes } from '@/hooks/useSupabase'
+import { useWorkersWithRoutes } from '@/hooks/useSupabase'
 
 interface RoutesViewerModalProps {
   isOpen: boolean
@@ -23,26 +23,21 @@ export default function RoutesViewerModal({ isOpen, onClose }: RoutesViewerModal
   const { workersWithRoutes, loading: loadingWorkers } = useWorkersWithRoutes(today)
   const [selectedWorkerId, setSelectedWorkerId] = useState<string | null>(null)
 
+  // Filter to only workers with jobs and create consistent color map
+  const workersWithJobs = workersWithRoutes.filter(wr => wr.jobCount > 0)
+  
+  // Create a color map based on worker_id for consistency
+  const colorMap: Record<string, string> = {}
+  workersWithJobs.forEach((wr, index) => {
+    colorMap[wr.worker_id] = ROUTE_COLORS[index % ROUTE_COLORS.length]
+  })
+
   // Auto-select first worker with jobs
   useEffect(() => {
-    if (workersWithRoutes.length > 0 && !selectedWorkerId) {
-      const workerWithJobs = workersWithRoutes.find(r => r.jobCount > 0)
-      if (workerWithJobs) {
-        setSelectedWorkerId(workerWithJobs.worker_id)
-      }
+    if (workersWithJobs.length > 0 && !selectedWorkerId) {
+      setSelectedWorkerId(workersWithJobs[0].worker_id)
     }
-  }, [workersWithRoutes, selectedWorkerId])
-
-  // Build route data for the map
-  const routeData: RouteData[] = workersWithRoutes
-    .filter(wr => wr.jobCount > 0)
-    .map((wr, index) => ({
-      workerId: wr.worker_id,
-      workerName: wr.worker?.name || 'Unknown',
-      path: [], // Will be populated from route details
-      jobs: [], // Will be populated from route details
-      color: ROUTE_COLORS[index % ROUTE_COLORS.length],
-    }))
+  }, [workersWithJobs, selectedWorkerId])
 
   if (!isOpen) return null
 
@@ -84,7 +79,7 @@ export default function RoutesViewerModal({ isOpen, onClose }: RoutesViewerModal
               <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
               <p className="text-gray-400">Loading routes...</p>
             </div>
-          ) : workersWithRoutes.filter(r => r.jobCount > 0).length === 0 ? (
+          ) : workersWithJobs.length === 0 ? (
             <div className="text-center py-12">
               <Icon name="route" className="text-gray-500 text-6xl mb-4" />
               <p className="text-white text-lg mb-2">No Routes Today</p>
@@ -96,16 +91,16 @@ export default function RoutesViewerModal({ isOpen, onClose }: RoutesViewerModal
             <>
               {/* Map */}
               <div className="h-80 rounded-xl overflow-hidden mb-6 border border-gray-700">
-                <RoutesViewerMap workersWithRoutes={workersWithRoutes} />
+                <FullRoutesMap workersWithRoutes={workersWithJobs} colorMap={colorMap} />
               </div>
 
-              {/* Workers Summary */}
+              {/* Workers Summary - only show workers with jobs */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {workersWithRoutes.map((wr, index) => (
+                {workersWithJobs.map((wr) => (
                   <WorkerRouteCard 
                     key={wr.id} 
                     workerRoute={wr} 
-                    color={ROUTE_COLORS[index % ROUTE_COLORS.length]}
+                    color={colorMap[wr.worker_id]}
                   />
                 ))}
               </div>
@@ -127,38 +122,8 @@ export default function RoutesViewerModal({ isOpen, onClose }: RoutesViewerModal
   )
 }
 
-// Sub-component to load and display routes on the map
-function RoutesViewerMap({ workersWithRoutes }: { workersWithRoutes: any[] }) {
-  const [allRouteData, setAllRouteData] = useState<RouteData[]>([])
-
-  useEffect(() => {
-    // Build route data from workersWithRoutes
-    const routes: RouteData[] = []
-    
-    workersWithRoutes.forEach((wr, index) => {
-      if (wr.jobCount > 0) {
-        // We'll need to fetch the full route details for the path
-        // For now, we'll show markers based on available data
-        routes.push({
-          workerId: wr.worker_id,
-          workerName: wr.worker?.name || 'Unknown',
-          path: [],
-          jobs: [],
-          color: ROUTE_COLORS[index % ROUTE_COLORS.length],
-        })
-      }
-    })
-
-    setAllRouteData(routes)
-  }, [workersWithRoutes])
-
-  // We need to fetch full route details to get the path coordinates
-  // Let's use a different approach - fetch all routes with job details
-  return <FullRoutesMap workersWithRoutes={workersWithRoutes} />
-}
-
 // Component that fetches full route data and displays the map
-function FullRoutesMap({ workersWithRoutes }: { workersWithRoutes: any[] }) {
+function FullRoutesMap({ workersWithRoutes, colorMap }: { workersWithRoutes: any[]; colorMap: Record<string, string> }) {
   const [routeData, setRouteData] = useState<RouteData[]>([])
   const [loading, setLoading] = useState(true)
 
@@ -166,9 +131,7 @@ function FullRoutesMap({ workersWithRoutes }: { workersWithRoutes: any[] }) {
     async function fetchFullRoutes() {
       const { supabase } = await import('@/lib/supabase')
       
-      const routeIds = workersWithRoutes
-        .filter(wr => wr.jobCount > 0)
-        .map(wr => wr.id)
+      const routeIds = workersWithRoutes.map(wr => wr.id)
 
       if (routeIds.length === 0) {
         setLoading(false)
@@ -197,7 +160,8 @@ function FullRoutesMap({ workersWithRoutes }: { workersWithRoutes: any[] }) {
         return
       }
 
-      const routes: RouteData[] = (data || []).map((route, index) => ({
+      // Use the colorMap to ensure consistent colors with worker cards
+      const routes: RouteData[] = (data || []).map((route) => ({
         workerId: route.worker_id,
         workerName: route.worker?.name || 'Unknown',
         path: route.optimized_path || [],
@@ -209,7 +173,7 @@ function FullRoutesMap({ workersWithRoutes }: { workersWithRoutes: any[] }) {
             location: [rj.location_lat, rj.location_lng],
             order: rj.job_order,
           })),
-        color: ROUTE_COLORS[index % ROUTE_COLORS.length],
+        color: colorMap[route.worker_id] || ROUTE_COLORS[0],
       }))
 
       setRouteData(routes)
@@ -217,7 +181,7 @@ function FullRoutesMap({ workersWithRoutes }: { workersWithRoutes: any[] }) {
     }
 
     fetchFullRoutes()
-  }, [workersWithRoutes])
+  }, [workersWithRoutes, colorMap])
 
   if (loading) {
     return (

@@ -304,6 +304,34 @@ def optimize_routes(jobs, workers, api_key):
 
     print(f"[OPTIMIZE] All coordinates prepared. Running VRP solver...")
 
+    # Check for jobs that are far from depot (>200km as the crow flies)
+    def haversine_km(coord1, coord2):
+        """Calculate distance between two lat/lng points in km"""
+        from math import radians, sin, cos, sqrt, atan2
+        lat1, lon1 = radians(coord1[0]), radians(coord1[1])
+        lat2, lon2 = radians(coord2[0]), radians(coord2[1])
+        dlat, dlon = lat2 - lat1, lon2 - lon1
+        a = sin(dlat/2)**2 + cos(lat1) * cos(lat2) * sin(dlon/2)**2
+        return 6371 * 2 * atan2(sqrt(a), sqrt(1-a))
+
+    # Use first depot as reference point
+    reference_depot = depot_coords[0]
+    far_jobs = []
+    for i, job_coord in enumerate(job_coords):
+        dist_km = haversine_km(reference_depot, job_coord)
+        if dist_km > 200:  # 200km threshold
+            far_jobs.append({
+                'index': i,
+                'job': jobs[i],
+                'distance_km': dist_km
+            })
+
+    if far_jobs:
+        print(f"\n[WARNING] {len(far_jobs)} job(s) are >200km from depot:")
+        for fj in far_jobs:
+            print(f"  - {fj['job'].get('address', 'Unknown')}: {fj['distance_km']:.0f} km away")
+        print(f"[WARNING] Consider setting worker depot addresses closer to jobs, or jobs may cluster to one driver.\n")
+
     # Solve VRP
     routes, all_locations = solve_vrp(depot_coords, job_coords, api_key)
 
@@ -345,4 +373,13 @@ def optimize_routes(jobs, workers, api_key):
     print(f"\n[SUMMARY] Total jobs assigned: {total_jobs_assigned}/{len(jobs)}")
     print(f"{'='*60}\n")
 
-    return result
+    # Build warnings list for frontend
+    warnings = []
+    if far_jobs:
+        warnings.append({
+            'type': 'far_jobs',
+            'message': f"{len(far_jobs)} job(s) are more than 200km from the depot. Consider updating worker depot addresses.",
+            'details': [f"{fj['job'].get('address', 'Unknown')}: {fj['distance_km']:.0f} km away" for fj in far_jobs]
+        })
+
+    return {'routes': result, 'warnings': warnings}

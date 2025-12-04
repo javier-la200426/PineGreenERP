@@ -27,6 +27,7 @@ export default function RouteOptimizerModal({
   const [selectedWorkerIds, setSelectedWorkerIds] = useState<string[]>([])
   const [routeDate, setRouteDate] = useState(new Date().toISOString().split('T')[0])
   const [optimizationResult, setOptimizationResult] = useState<any>(null)
+  const [warnings, setWarnings] = useState<any[]>([])
   const [step, setStep] = useState<'selection' | 'preview' | 'success'>('selection')
 
   // Reset state when modal opens/closes
@@ -36,6 +37,7 @@ export default function RouteOptimizerModal({
       setSelectedJobIds([])
       setSelectedWorkerIds([])
       setOptimizationResult(null)
+      setWarnings([])
     }
   }, [isOpen])
 
@@ -78,6 +80,7 @@ export default function RouteOptimizerModal({
       const result = await optimizeRoutes(jobs, workers, routeDate)
 
       setOptimizationResult(result)
+      setWarnings(result.warnings || [])
       setStep('preview')
     } catch (err) {
       console.error('Optimization failed:', err)
@@ -234,6 +237,27 @@ export default function RouteOptimizerModal({
           {/* Step 2: Preview */}
           {step === 'preview' && optimizationResult && (
             <div className="space-y-6">
+              {/* Warnings */}
+              {warnings.length > 0 && (
+                <div className="p-4 bg-amber-50 dark:bg-amber-900/20 border border-amber-300 dark:border-amber-700 rounded-lg">
+                  <div className="flex items-start gap-3">
+                    <Icon name="warning" className="text-amber-500 text-xl flex-shrink-0 mt-0.5" />
+                    <div>
+                      <p className="font-medium text-amber-800 dark:text-amber-300">
+                        {warnings[0]?.message}
+                      </p>
+                      {warnings[0]?.details && (
+                        <ul className="mt-2 text-sm text-amber-700 dark:text-amber-400 list-disc list-inside">
+                          {warnings[0].details.map((detail: string, i: number) => (
+                            <li key={i}>{detail}</li>
+                          ))}
+                        </ul>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              )}
+
               {/* Map */}
               <div className="h-96">
                 <RouteMap routes={routesForMap} />

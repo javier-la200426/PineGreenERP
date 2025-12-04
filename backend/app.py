@@ -178,11 +178,14 @@ def optimize_routes_endpoint():
             }), 500
 
         # Optimize routes
-        routes = optimize_routes(jobs, workers, GOOGLE_API_KEY)
+        optimization_result = optimize_routes(jobs, workers, GOOGLE_API_KEY)
+        routes = optimization_result['routes']
+        warnings = optimization_result.get('warnings', [])
 
         return jsonify({
             'success': True,
             'routes': routes,
+            'warnings': warnings,
             'metadata': {
                 'num_jobs': len(jobs),
                 'num_workers': len(workers),

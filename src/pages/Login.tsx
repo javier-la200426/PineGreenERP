@@ -98,6 +98,12 @@ export default function Login() {
                 Worker Dashboard
               </Button>
             </Link>
+            <Link to="/worker/route">
+              <Button variant="secondary" size="md" fullWidth className="justify-start">
+                <Icon name="route" className="mr-3" />
+                Worker Route
+              </Button>
+            </Link>
             <Link to="/client/appointment">
               <Button variant="secondary" size="md" fullWidth className="justify-start">
                 <Icon name="person" className="mr-3" />
