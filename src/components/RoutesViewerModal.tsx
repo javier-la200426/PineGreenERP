@@ -161,7 +161,7 @@ function FullRoutesMap({ workersWithRoutes, colorMap }: { workersWithRoutes: any
       }
 
       // Use the colorMap to ensure consistent colors with worker cards
-      const routes: RouteData[] = (data || []).map((route) => ({
+      const routes: RouteData[] = (data || []).map((route: any) => ({
         workerId: route.worker_id,
         workerName: route.worker?.name || 'Unknown',
         path: route.optimized_path || [],

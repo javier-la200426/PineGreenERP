@@ -39,6 +39,7 @@ interface OptimizeRoutesResponse {
     num_jobs: number
     num_workers: number
   }
+  warnings?: any[]
   error?: string
 }
 

@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react'
-import { useTranslation } from 'react-i18next'
 import Icon from './Icon'
 import Button from './Button'
 import RouteMap, { RouteData } from './RouteMap'
@@ -20,7 +19,6 @@ export default function RouteOptimizerModal({
   availableWorkers,
   onOptimizationComplete,
 }: RouteOptimizerModalProps) {
-  const { t } = useTranslation()
   const { optimizeRoutes, loading, error } = useRouteOptimization()
 
   const [selectedJobIds, setSelectedJobIds] = useState<string[]>([])
