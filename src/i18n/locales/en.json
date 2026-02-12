@@ -178,18 +178,27 @@
     "account": "Account",
     "profile": "Profile",
     "changePassword": "Change Password",
-    "logout": "Logout"
+    "logout": "Logout",
+    "role": "Role"
   },
   "login": {
     "title": "Welcome Back",
     "subtitle": "Sign in to your account",
+    "signUpTitle": "Create Account",
+    "signUpSubtitle": "Sign up to get started",
+    "signInTab": "Sign In",
+    "signUpTab": "Sign Up",
     "email": "Email",
     "password": "Password",
+    "fullName": "Full Name",
     "rememberMe": "Remember me",
     "forgotPassword": "Forgot password?",
     "signIn": "Sign In",
+    "signUp": "Sign Up",
     "dontHaveAccount": "Don't have an account?",
-    "signUp": "Sign Up"
+    "alreadyHaveAccount": "Already have an account?",
+    "signUpSuccess": "Account created successfully! You can now sign in.",
+    "invalidCredentials": "Invalid email or password. Please try again."
   }
 }
 

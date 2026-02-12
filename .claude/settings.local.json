@@ -2,7 +2,18 @@
   "permissions": {
     "allow": [
       "Bash(mkdir:*)",
-      "Bash(npm install:*)"
+      "Bash(npm install:*)",
+      "Bash(git -C /Users/javierlaveaga/Desktop/CapstonE1 log --oneline -20)",
+      "mcp__supabase__get_project_url",
+      "mcp__supabase__list_tables",
+      "mcp__supabase__list_migrations",
+      "mcp__supabase__execute_sql",
+      "mcp__supabase__search_docs",
+      "mcp__supabase__get_advisors",
+      "mcp__supabase__apply_migration",
+      "Bash(npm run build:*)",
+      "mcp__supabase__generate_typescript_types",
+      "mcp__supabase__get_logs"
     ],
     "deny": [],
     "ask": []

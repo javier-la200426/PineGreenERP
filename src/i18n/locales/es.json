@@ -178,18 +178,27 @@
     "account": "Cuenta",
     "profile": "Perfil",
     "changePassword": "Cambiar Contraseña",
-    "logout": "Cerrar Sesión"
+    "logout": "Cerrar Sesión",
+    "role": "Rol"
   },
   "login": {
     "title": "Bienvenido de Nuevo",
     "subtitle": "Inicie sesión en su cuenta",
+    "signUpTitle": "Crear Cuenta",
+    "signUpSubtitle": "Regístrese para comenzar",
+    "signInTab": "Iniciar Sesión",
+    "signUpTab": "Registrarse",
     "email": "Correo Electrónico",
     "password": "Contraseña",
+    "fullName": "Nombre Completo",
     "rememberMe": "Recuérdame",
     "forgotPassword": "¿Olvidó su contraseña?",
     "signIn": "Iniciar Sesión",
+    "signUp": "Registrarse",
     "dontHaveAccount": "¿No tiene una cuenta?",
-    "signUp": "Registrarse"
+    "alreadyHaveAccount": "¿Ya tiene una cuenta?",
+    "signUpSuccess": "¡Cuenta creada exitosamente! Ahora puede iniciar sesión.",
+    "invalidCredentials": "Correo o contraseña inválidos. Intente de nuevo."
   }
 }
 

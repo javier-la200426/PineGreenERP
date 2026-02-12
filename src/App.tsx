@@ -1,5 +1,7 @@
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { useThemeStore } from './store/themeStore'
+import { AuthProvider } from './contexts/AuthContext'
+import ProtectedRoute, { RoleBasedRedirect } from './components/ProtectedRoute'
 
 // Manager Routes
 import ManagerDashboard from './pages/manager/Dashboard'
@@ -34,36 +36,61 @@ function App() {
 
   return (
     <Router>
-      <Routes>
-        {/* Default redirect to manager dashboard */}
-        <Route path="/" element={<Navigate to="/manager/dashboard" replace />} />
-        
-        {/* Login */}
-        <Route path="/login" element={<Login />} />
-        
-        {/* Manager Routes */}
-        <Route path="/manager/dashboard" element={<ManagerDashboard />} />
-        <Route path="/manager/jobs" element={<ManagerJobs />} />
-        <Route path="/manager/workers" element={<ManagerWorkers />} />
-        <Route path="/manager/clients" element={<ManagerClients />} />
-        <Route path="/manager/reports" element={<ManagerReports />} />
-        
-        {/* Client Routes */}
-        <Route path="/client/appointment" element={<ClientAppointment />} />
-        <Route path="/client/payment" element={<ClientPayment />} />
-        <Route path="/client/receipt" element={<ClientReceipt />} />
-        
-        {/* Worker Routes */}
-        <Route path="/worker/jobs" element={<WorkerJobList />} />
-        <Route path="/worker/route" element={<WorkerRouteView />} />
-        <Route path="/worker/job/:id/complete" element={<WorkerJobCompletion />} />
-        
-        {/* Settings (shared across all roles) */}
-        <Route path="/settings" element={<Settings />} />
-      </Routes>
+      <AuthProvider>
+        <Routes>
+          {/* Default redirect based on role */}
+          <Route path="/" element={<RoleBasedRedirect />} />
+
+          {/* Login */}
+          <Route path="/login" element={<Login />} />
+
+          {/* Manager Routes */}
+          <Route path="/manager/dashboard" element={
+            <ProtectedRoute allowedRoles={['manager']}><ManagerDashboard /></ProtectedRoute>
+          } />
+          <Route path="/manager/jobs" element={
+            <ProtectedRoute allowedRoles={['manager']}><ManagerJobs /></ProtectedRoute>
+          } />
+          <Route path="/manager/workers" element={
+            <ProtectedRoute allowedRoles={['manager']}><ManagerWorkers /></ProtectedRoute>
+          } />
+          <Route path="/manager/clients" element={
+            <ProtectedRoute allowedRoles={['manager']}><ManagerClients /></ProtectedRoute>
+          } />
+          <Route path="/manager/reports" element={
+            <ProtectedRoute allowedRoles={['manager']}><ManagerReports /></ProtectedRoute>
+          } />
+
+          {/* Client Routes */}
+          <Route path="/client/appointment" element={
+            <ProtectedRoute allowedRoles={['client']}><ClientAppointment /></ProtectedRoute>
+          } />
+          <Route path="/client/payment" element={
+            <ProtectedRoute allowedRoles={['client']}><ClientPayment /></ProtectedRoute>
+          } />
+          <Route path="/client/receipt" element={
+            <ProtectedRoute allowedRoles={['client']}><ClientReceipt /></ProtectedRoute>
+          } />
+
+          {/* Worker Routes */}
+          <Route path="/worker/jobs" element={
+            <ProtectedRoute allowedRoles={['worker']}><WorkerJobList /></ProtectedRoute>
+          } />
+          <Route path="/worker/route" element={
+            <ProtectedRoute allowedRoles={['worker']}><WorkerRouteView /></ProtectedRoute>
+          } />
+          <Route path="/worker/job/:id/complete" element={
+            <ProtectedRoute allowedRoles={['worker']}><WorkerJobCompletion /></ProtectedRoute>
+          } />
+
+          {/* Settings (shared across all roles) */}
+          <Route path="/settings" element={
+            <ProtectedRoute allowedRoles={['manager', 'worker', 'client']}><Settings /></ProtectedRoute>
+          } />
+        </Routes>
+      </AuthProvider>
     </Router>
   )
 }
 
 export default App
-

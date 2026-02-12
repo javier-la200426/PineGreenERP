@@ -1,11 +1,20 @@
 import { useTranslation } from 'react-i18next'
+import { useNavigate } from 'react-router-dom'
 import Sidebar from '@/components/Sidebar'
 import Header from '@/components/Header'
 import StatCard from '@/components/StatCard'
 import Icon from '@/components/Icon'
+import { useAuth } from '@/contexts/AuthContext'
 
 export default function ManagerDashboard() {
   const { t } = useTranslation()
+  const { signOut } = useAuth()
+  const navigate = useNavigate()
+
+  const handleLogout = async () => {
+    await signOut()
+    navigate('/login')
+  }
 
   const sidebarLinks = [
     { to: '/manager/dashboard', icon: 'dashboard', label: t('common.dashboard'), filled: true },
@@ -70,7 +79,7 @@ export default function ManagerDashboard() {
 
   return (
     <div className="flex h-screen">
-      <Sidebar links={sidebarLinks} bottomLinks={bottomLinks} userRole="manager" />
+      <Sidebar links={sidebarLinks} bottomLinks={bottomLinks} userRole="manager" onLogout={handleLogout} />
 
       <main className="flex-1 overflow-y-auto">
         <div className="p-8">

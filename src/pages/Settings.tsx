@@ -1,11 +1,20 @@
 import { useTranslation } from 'react-i18next'
+import { useNavigate } from 'react-router-dom'
 import { useThemeStore } from '@/store/themeStore'
+import { useAuth } from '@/contexts/AuthContext'
 import Icon from '@/components/Icon'
 import Button from '@/components/Button'
 
 export default function Settings() {
   const { t, i18n } = useTranslation()
   const { isDarkMode, toggleTheme } = useThemeStore()
+  const { profile, signOut } = useAuth()
+  const navigate = useNavigate()
+
+  async function handleLogout() {
+    await signOut()
+    navigate('/login')
+  }
 
   const changeLanguage = (lng: string) => {
     i18n.changeLanguage(lng)
@@ -154,6 +163,13 @@ export default function Settings() {
             <h2 className="text-gray-900 dark:text-white text-xl font-bold leading-tight mb-4">
               {t('settings.account')}
             </h2>
+            {profile && (
+              <div className="mb-4 p-3 bg-gray-50 dark:bg-gray-700/30 rounded-lg">
+                <p className="text-gray-900 dark:text-white font-medium">{profile.full_name || profile.email}</p>
+                <p className="text-gray-500 dark:text-gray-400 text-sm">{profile.email}</p>
+                <p className="text-gray-500 dark:text-gray-400 text-sm capitalize">{t('settings.role')}: {profile.role}</p>
+              </div>
+            )}
             <div className="space-y-3">
               <Button variant="secondary" size="md" fullWidth className="justify-start">
                 <Icon name="person" className="mr-3" />
@@ -163,7 +179,7 @@ export default function Settings() {
                 <Icon name="lock" className="mr-3" />
                 {t('settings.changePassword')}
               </Button>
-              <Button variant="danger" size="md" fullWidth className="justify-start">
+              <Button variant="danger" size="md" fullWidth className="justify-start" onClick={handleLogout}>
                 <Icon name="logout" className="mr-3" />
                 {t('settings.logout')}
               </Button>

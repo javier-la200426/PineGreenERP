@@ -13,9 +13,10 @@ interface SidebarProps {
   links: SidebarLink[]
   bottomLinks?: SidebarLink[]
   userRole?: 'manager' | 'worker' | 'client'
+  onLogout?: () => void
 }
 
-export default function Sidebar({ links, bottomLinks }: SidebarProps) {
+export default function Sidebar({ links, bottomLinks, onLogout }: SidebarProps) {
   const location = useLocation()
   const { t } = useTranslation()
 
@@ -52,16 +53,27 @@ export default function Sidebar({ links, bottomLinks }: SidebarProps) {
       {/* Bottom Links */}
       {bottomLinks && (
         <div className="flex flex-col gap-1">
-          {bottomLinks.map((link) => (
-            <Link
-              key={link.to}
-              to={link.to}
-              className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/10 text-white/80 transition-colors"
-            >
-              <Icon name={link.icon} />
-              <p className="text-sm font-medium leading-normal">{link.label}</p>
-            </Link>
-          ))}
+          {bottomLinks.map((link) =>
+            link.icon === 'logout' && onLogout ? (
+              <button
+                key="logout"
+                onClick={onLogout}
+                className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/10 text-white/80 transition-colors w-full text-left"
+              >
+                <Icon name={link.icon} />
+                <p className="text-sm font-medium leading-normal">{link.label}</p>
+              </button>
+            ) : (
+              <Link
+                key={link.to}
+                to={link.to}
+                className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/10 text-white/80 transition-colors"
+              >
+                <Icon name={link.icon} />
+                <p className="text-sm font-medium leading-normal">{link.label}</p>
+              </Link>
+            )
+          )}
         </div>
       )}
     </aside>

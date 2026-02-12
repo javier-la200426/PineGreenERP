@@ -1,13 +1,22 @@
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { useNavigate } from 'react-router-dom'
 import Sidebar from '@/components/Sidebar'
 import Icon from '@/components/Icon'
 import RouteOptimizerModal from '@/components/RouteOptimizerModal'
 import RoutesViewerModal from '@/components/RoutesViewerModal'
 import { useJobs, useWorkers, useWorkersWithRoutes } from '@/hooks/useSupabase'
+import { useAuth } from '@/contexts/AuthContext'
 
 export default function ManagerJobs() {
   const { t } = useTranslation()
+  const { signOut } = useAuth()
+  const navigate = useNavigate()
+
+  const handleLogout = async () => {
+    await signOut()
+    navigate('/login')
+  }
   const { jobs: jobsData, loading, error } = useJobs()
   const { workers } = useWorkers()
   const [isOptimizerModalOpen, setIsOptimizerModalOpen] = useState(false)
@@ -74,7 +83,7 @@ export default function ManagerJobs() {
   if (loading) {
     return (
       <div className="flex h-screen">
-        <Sidebar links={sidebarLinks} bottomLinks={bottomLinks} userRole="manager" />
+        <Sidebar links={sidebarLinks} bottomLinks={bottomLinks} userRole="manager" onLogout={handleLogout} />
         <main className="flex-1 overflow-y-auto flex items-center justify-center">
           <div className="text-center">
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
@@ -89,7 +98,7 @@ export default function ManagerJobs() {
   if (error) {
     return (
       <div className="flex h-screen">
-        <Sidebar links={sidebarLinks} bottomLinks={bottomLinks} userRole="manager" />
+        <Sidebar links={sidebarLinks} bottomLinks={bottomLinks} userRole="manager" onLogout={handleLogout} />
         <main className="flex-1 overflow-y-auto flex items-center justify-center">
           <div className="text-center">
             <Icon name="error" className="text-red-500 text-6xl mb-4" />
@@ -103,7 +112,7 @@ export default function ManagerJobs() {
 
   return (
     <div className="flex h-screen">
-      <Sidebar links={sidebarLinks} bottomLinks={bottomLinks} userRole="manager" />
+      <Sidebar links={sidebarLinks} bottomLinks={bottomLinks} userRole="manager" onLogout={handleLogout} />
 
       <main className="flex-1 overflow-y-auto">
         <div className="p-8">

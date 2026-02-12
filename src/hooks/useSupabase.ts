@@ -99,29 +99,8 @@ export function useWorkers() {
   return { workers, loading, error }
 }
 
-// Authentication hooks
-export function useAuth() {
-  const [user] = useState<any>(null)
-  const [loading, setLoading] = useState(true)
-
-  useEffect(() => {
-    // TODO: Implement actual auth logic
-    // supabase.auth.getSession().then(({ data: { session } }) => {
-    //   setUser(session?.user ?? null)
-    //   setLoading(false)
-    // })
-
-    // const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
-    //   setUser(session?.user ?? null)
-    // })
-
-    // return () => subscription.unsubscribe()
-
-    setLoading(false)
-  }, [])
-
-  return { user, loading }
-}
+// Authentication is now handled by AuthContext (src/contexts/AuthContext.tsx)
+// Use: import { useAuth } from '@/contexts/AuthContext'
 
 // Routes hooks
 export function useWorkerRoutes(workerId: string, date?: string) {
