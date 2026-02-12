@@ -87,6 +87,9 @@ function App() {
           <Route path="/settings" element={
             <ProtectedRoute allowedRoles={['manager', 'worker', 'client']}><Settings /></ProtectedRoute>
           } />
+
+          {/* Catch-all: redirect to role default or login */}
+          <Route path="*" element={<RoleBasedRedirect />} />
         </Routes>
       </AuthProvider>
     </Router>

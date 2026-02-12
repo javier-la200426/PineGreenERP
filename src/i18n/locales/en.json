@@ -198,7 +198,12 @@
     "dontHaveAccount": "Don't have an account?",
     "alreadyHaveAccount": "Already have an account?",
     "signUpSuccess": "Account created successfully! You can now sign in.",
-    "invalidCredentials": "Invalid email or password. Please try again."
+    "invalidCredentials": "Invalid email or password. Please try again.",
+    "passwordNoSpaces": "Password must not start or end with a space.",
+    "passwordTooShort": "Password must be at least 8 characters.",
+    "passwordNeedsUppercase": "Password must include an uppercase letter.",
+    "passwordNeedsLowercase": "Password must include a lowercase letter.",
+    "passwordNeedsNumber": "Password must include a number."
   }
 }
 

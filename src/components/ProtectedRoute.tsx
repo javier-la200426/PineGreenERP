@@ -18,6 +18,7 @@ function getDefaultRoute(role: UserRole): string {
 export default function ProtectedRoute({ children, allowedRoles }: ProtectedRouteProps) {
   const { session, profile, isLoading } = useAuth()
 
+  // Still determining auth state
   if (isLoading) {
     return (
       <div className="min-h-screen bg-background-light dark:bg-background-dark flex items-center justify-center">
@@ -30,7 +31,16 @@ export default function ProtectedRoute({ children, allowedRoles }: ProtectedRout
     return <Navigate to="/login" replace />
   }
 
-  if (profile && !allowedRoles.includes(profile.role)) {
+  // Session exists but profile hasn't loaded yet — wait for it
+  if (!profile) {
+    return (
+      <div className="min-h-screen bg-background-light dark:bg-background-dark flex items-center justify-center">
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+      </div>
+    )
+  }
+
+  if (!allowedRoles.includes(profile.role)) {
     return <Navigate to={getDefaultRoute(profile.role)} replace />
   }
 
@@ -48,8 +58,17 @@ export function RoleBasedRedirect() {
     )
   }
 
-  if (!session || !profile) {
+  if (!session) {
     return <Navigate to="/login" replace />
+  }
+
+  // Session exists but profile hasn't loaded yet
+  if (!profile) {
+    return (
+      <div className="min-h-screen bg-background-light dark:bg-background-dark flex items-center justify-center">
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+      </div>
+    )
   }
 
   return <Navigate to={getDefaultRoute(profile.role)} replace />

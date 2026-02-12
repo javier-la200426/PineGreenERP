@@ -26,9 +26,17 @@ export default function Login() {
   const [submitting, setSubmitting] = useState(false)
   const [signUpSuccess, setSignUpSuccess] = useState(false)
 
-  // Redirect if already authenticated
   if (!isLoading && session && profile) {
     return <Navigate to={getDefaultRoute(profile.role)} replace />
+  }
+
+  function validatePassword(pw: string): string | null {
+    if (pw !== pw.trim()) return t('login.passwordNoSpaces')
+    if (pw.length < 8) return t('login.passwordTooShort')
+    if (!/[A-Z]/.test(pw)) return t('login.passwordNeedsUppercase')
+    if (!/[a-z]/.test(pw)) return t('login.passwordNeedsLowercase')
+    if (!/[0-9]/.test(pw)) return t('login.passwordNeedsNumber')
+    return null
   }
 
   async function handleSubmit(e: FormEvent) {
@@ -40,17 +48,23 @@ export default function Login() {
       const result = await signIn(email, password)
       if (result.error) {
         setError(t('login.invalidCredentials'))
+        setSubmitting(false)
       }
     } else {
+      const pwError = validatePassword(password.trim())
+      if (pwError) {
+        setError(pwError)
+        setSubmitting(false)
+        return
+      }
       const result = await signUp(email, password, fullName)
       if (result.error) {
         setError(result.error)
       } else {
         setSignUpSuccess(true)
       }
+      setSubmitting(false)
     }
-
-    setSubmitting(false)
   }
 
   return (
@@ -158,7 +172,7 @@ export default function Login() {
                 className="form-input w-full h-12 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 px-4 text-gray-900 dark:text-white placeholder:text-gray-500 dark:placeholder:text-gray-400 focus:border-primary focus:ring-2 focus:ring-primary/20"
                 placeholder="••••••••"
                 required
-                minLength={6}
+                minLength={8}
               />
             </div>
 

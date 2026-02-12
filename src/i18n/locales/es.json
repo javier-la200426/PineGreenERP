@@ -198,7 +198,12 @@
     "dontHaveAccount": "¿No tiene una cuenta?",
     "alreadyHaveAccount": "¿Ya tiene una cuenta?",
     "signUpSuccess": "¡Cuenta creada exitosamente! Ahora puede iniciar sesión.",
-    "invalidCredentials": "Correo o contraseña inválidos. Intente de nuevo."
+    "invalidCredentials": "Correo o contraseña inválidos. Intente de nuevo.",
+    "passwordNoSpaces": "La contraseña no debe comenzar ni terminar con un espacio.",
+    "passwordTooShort": "La contraseña debe tener al menos 8 caracteres.",
+    "passwordNeedsUppercase": "La contraseña debe incluir una letra mayúscula.",
+    "passwordNeedsLowercase": "La contraseña debe incluir una letra minúscula.",
+    "passwordNeedsNumber": "La contraseña debe incluir un número."
   }
 }
 
